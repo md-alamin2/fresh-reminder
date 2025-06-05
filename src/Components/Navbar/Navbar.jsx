@@ -161,10 +161,10 @@ const Navbar = () => {
               </ul>
             </div>
             <button
-              className="btn btn-error btn-outline md:flex items-center hidden"
+              className="btn btn-error btn-outline md:block hidden"
               onClick={handleLogout}
             >
-              Logout <MdOutlineLogout size={20} />
+               <MdOutlineLogout size={20} />
             </button>
           </div>
         ) : (
