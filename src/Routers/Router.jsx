@@ -3,6 +3,7 @@ import Root from "../Layout/Root";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
+import AddFood from "../Pages/AddFood/AddFood";
 
 export const router = createBrowserRouter([
   {
@@ -14,13 +15,17 @@ export const router = createBrowserRouter([
         Component: Home,
       },
       {
+        path: "/add-food",
+        element: <AddFood></AddFood>,
+      },
+      {
         path: "/login",
         Component: Login,
       },
       {
-        path:"/register",
-        Component: Register
-      }
+        path: "/register",
+        Component: Register,
+      },
     ],
   },
 ]);

@@ -35,7 +35,7 @@ const Navbar = () => {
         <>
           <li>
             <NavLink
-              to="/browse-task"
+              to="/add-food"
               className={({ isActive }) =>
                 isActive ? " font-semibold bg-[#64b843]" : " font-medium"
               }
@@ -99,7 +99,7 @@ const Navbar = () => {
     <div className="navbar p-0 w-11/12 lg:container mx-auto">
       <div className="navbar-start">
         <div className="dropdown">
-          <div tabIndex={0} role="button" className="lg:hidden">
+          <div tabIndex={0} role="button" className="lg:hidden cursor-pointer">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-7 w-10"
@@ -124,7 +124,7 @@ const Navbar = () => {
           </ul>
         </div>
         <Link to="/" className=" flex items-center gap-2 md:text-2xl font-bold">
-          <img className="w-12 md:w-14" src={logo} alt="logo" /> Fresh Reminder
+          <img className="w-12 md:w-14" src={logo} alt="logo" /> FreshReminder
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
@@ -164,7 +164,7 @@ const Navbar = () => {
               className="btn btn-error btn-outline md:block hidden"
               onClick={handleLogout}
             >
-               <MdOutlineLogout size={20} />
+              <MdOutlineLogout size={20} />
             </button>
           </div>
         ) : (
