@@ -1,0 +1,22 @@
+[
+  {
+    "title": "Smart Alerts",
+    "icon": "https://i.ibb.co/n8cDQpjB/clock.png",
+    "description": "Get timely notifications before your food expires, helping you plan meals and reduce waste."
+  },
+  {
+    "title": "Usage Analytics",
+    "icon": "https://i.ibb.co/j9xgFF3y/analytics.png",
+    "description": "Track your consumption patterns and identify opportunities to optimize your food purchases."
+  },
+  {
+    "title": "Eco-Friendly",
+    "icon": "https://i.ibb.co/CKhhny1p/eco.png",
+    "description": "Contribute to environmental sustainability by reducing food waste in your household."
+  },
+  {
+    "title": "Secure & Private",
+    "icon": "https://i.ibb.co/wZ23bvj3/sheild.png",
+    "description": "Your data is encrypted and secure. We prioritize your privacy and data protection."
+  }
+]
