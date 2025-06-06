@@ -15,7 +15,7 @@ const Navbar = () => {
         <NavLink
           to="/"
           className={({ isActive }) =>
-            isActive ? " font-semibold bg-[#64b843]" : " font-medium"
+            isActive ? "font-semibold bg-[#64b843]" : "font-medium"
           }
         >
           Home
@@ -23,9 +23,9 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          to="/add-task"
+          to="/fridge"
           className={({ isActive }) =>
-            isActive ? " font-semibold bg-[#64b843]" : " font-medium"
+            isActive ? "font-semibold bg-[#64b843]" : "font-medium"
           }
         >
           Fridge
@@ -37,7 +37,7 @@ const Navbar = () => {
             <NavLink
               to="/add-food"
               className={({ isActive }) =>
-                isActive ? " font-semibold bg-[#64b843]" : " font-medium"
+                isActive ? "font-semibold bg-[#64b843]" : "font-medium"
               }
             >
               Add Food
@@ -45,9 +45,9 @@ const Navbar = () => {
           </li>
           <li>
             <NavLink
-              to="/my-posted-task"
+              to="/my-items"
               className={({ isActive }) =>
-                isActive ? " font-semibold bg-[#64b843]" : " font-medium"
+                isActive ? "font-semibold bg-[#64b843]" : "font-medium"
               }
             >
               My Items

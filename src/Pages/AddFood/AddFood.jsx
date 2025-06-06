@@ -7,6 +7,7 @@ import axios from "axios";
 
 const AddFood = () => {
   const { user } = useAuth();
+  
   useEffect(() => {
     AOS.init({ duration: 1000 });
   }, []);

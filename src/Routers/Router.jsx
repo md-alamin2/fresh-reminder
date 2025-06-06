@@ -7,6 +7,7 @@ import AddFood from "../Pages/AddFood/AddFood";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Fridge from "../Pages/Fridge/Fridge";
 import MyItems from "../Pages/MyItems/MyItems";
+import Loader from "../Components/Laoder/Loader";
 
 export const router = createBrowserRouter([
   {
@@ -20,6 +21,8 @@ export const router = createBrowserRouter([
       {
         path: "/fridge",
         Component: Fridge,
+        loader:()=>fetch("http://localhost:3000/foods"),
+        hydrateFallbackElement:<Loader></Loader>
       },
       {
         path: "/add-food",

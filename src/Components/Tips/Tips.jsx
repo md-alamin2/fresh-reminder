@@ -13,7 +13,7 @@ const Tips = () => {
         <p className="text-xl font-thin text-center mt-5 max-w-lg mx-auto">
           Expert advice to help you make the most of your food inventory
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
           {tipsData.map((tips, index) => (
             <div key={index} className="bg-base-100 border border-gray-300 p-8 rounded-2xl">
               <div className="flex items-center gap-4">
