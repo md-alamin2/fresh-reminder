@@ -13,7 +13,7 @@ const Root = () => {
       <main>
         <Outlet></Outlet>
       </main>
-      <footer className="mt-10">
+      <footer className="mt-30">
         <div className="w-11/12 lg:container mx-auto">
           <img className="w-full" src={footerImg} alt="" />
         </div>

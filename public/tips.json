@@ -1,0 +1,20 @@
+[
+  {
+    "title": "Meal Planning",
+    "icon": "https://i.ibb.co/JFqySS72/hat.png",
+    "description": "Plan your meals around expiring items to maximize freshness and minimize waste.",
+    "proTip": "Check your nearly expired items every morning and plan your day’s meals accordingly."
+  },
+  {
+    "title": "Smart Storage",
+    "icon": "https://i.ibb.co/Z6999X9X/bell.png",
+    "description": "Learn proper storage techniques to extend the life of your food items.",
+    "proTip": "Store fruits and vegetables separately; keep dairy products in the coldest part of your fridge."
+  },
+  {
+    "title": "Share with Community",
+    "icon": "https://i.ibb.co/39rTHMhD/share.png",
+    "description": "Consider sharing excess food with neighbors or local food banks.",
+    "proTip": "Build connections while reducing waste by sharing food that you can’t consume in time."
+  }
+]

@@ -2,6 +2,7 @@ import React, { Suspense } from 'react';
 import Slider from '../../Components/Slider/Slider';
 import Loader from '../../Components/Laoder/Loader';
 import WhyChose from '../../Components/WhyChose/WhyChose';
+import Tips from '../../Components/Tips/Tips';
 
 const Home = () => {
     return (
@@ -11,6 +12,9 @@ const Home = () => {
             </Suspense>
             <Suspense>
                 <WhyChose></WhyChose>
+            </Suspense>
+            <Suspense>
+                <Tips></Tips>
             </Suspense>
         </div>
     );
