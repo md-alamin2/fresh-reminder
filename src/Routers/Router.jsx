@@ -8,6 +8,7 @@ import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Fridge from "../Pages/Fridge/Fridge";
 import MyItems from "../Pages/MyItems/MyItems";
 import Loader from "../Components/Laoder/Loader";
+import PrivateRoutes from "./PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -26,11 +27,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/add-food",
-        element: <AddFood></AddFood>,
+        element: <PrivateRoutes><AddFood></AddFood></PrivateRoutes>,
       },
       {
         path: "/my-items",
-        element: <MyItems></MyItems>,
+        element: <PrivateRoutes><MyItems></MyItems></PrivateRoutes>,
       },
       {
         path: "/login",

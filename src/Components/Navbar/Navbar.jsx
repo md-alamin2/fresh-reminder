@@ -96,7 +96,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar p-0 w-11/12 lg:container mx-auto">
+    <div className="navbar p-0 w-11/12 lg:container mx-auto py-4">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="lg:hidden cursor-pointer">

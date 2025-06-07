@@ -10,7 +10,7 @@ const Slider = () => {
   const slides = use(sliderPromise);
   console.log(slides);
   return (
-    <div className="w-full rounded-lg overflow-hidden shadow-lg">
+    <div className="w-full rounded-lg overflow-hidden shadow-lg relative z-0">
       <Swiper
         modules={[Pagination, Autoplay]}
         spaceBetween={0}
