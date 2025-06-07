@@ -4,8 +4,8 @@ import { MdDeleteForever } from "react-icons/md";
 import { FaRegEdit } from "react-icons/fa";
 
 
-const MyItemRow = ({ myItem }) => {
-  const { title, img, expiryDate, quantity } = myItem || {};
+const MyItemRow = ({ myItem, handleDeleteFood }) => {
+  const {_id, title, img, expiryDate, quantity } = myItem || {};
   return (
     <tr className="text-center">
       <td className="flex items-center gap-3">
@@ -19,7 +19,7 @@ const MyItemRow = ({ myItem }) => {
         <p className="font-bold">{format(new Date(expiryDate), "P")}</p>
       </td>
       <td>
-        <button className="btn mr-2"><MdDeleteForever size={20}/></button>
+        <button onClick={()=>handleDeleteFood(_id)} className="btn mr-2"><MdDeleteForever size={20}/></button>
         <button className="btn"><FaRegEdit size={20}/></button>
       </td>
     </tr>
