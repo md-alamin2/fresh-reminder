@@ -9,6 +9,7 @@ import Fridge from "../Pages/Fridge/Fridge";
 import MyItems from "../Pages/MyItems/MyItems";
 import Loader from "../Components/Laoder/Loader";
 import PrivateRoutes from "./PrivateRoute";
+import FoodDetails from "../Pages/FoodDetails/FoodDetails";
 
 export const router = createBrowserRouter([
   {
@@ -28,6 +29,12 @@ export const router = createBrowserRouter([
       {
         path: "/add-food",
         element: <PrivateRoutes><AddFood></AddFood></PrivateRoutes>,
+      },
+      {
+        path:"/food-details/:id",
+        element:<PrivateRoutes><FoodDetails></FoodDetails></PrivateRoutes>,
+        loader:({params})=>fetch(`http://localhost:3000/foods/${params.id}`),
+        hydrateFallbackElement:<Loader></Loader>
       },
       {
         path: "/my-items",

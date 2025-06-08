@@ -22,7 +22,7 @@ const Slider = () => {
         {slides.map((slide, index) => (
           <SwiperSlide key={index}>
             <div
-              className="hero min-h-[calc(100vh-64px)]"
+              className="hero min-h-[calc(100vh-90px)]"
               style={{
                 backgroundImage:
                   `url(${slide.image})`,

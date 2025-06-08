@@ -1,10 +1,9 @@
 import React, { use } from "react";
 
-const whyChosePromise = fetch("./WhyChose.json").then((res) => res.json());
+const whyChosePromise = fetch("/WhyChose.json").then((res) => res.json());
 
 const WhyChose = () => {
   const whyChoseData = use(whyChosePromise);
-  console.log(whyChoseData);
   return (
     <div className="w-11/12 lg:container mx-auto mt-30">
       <h2 className="text-5xl font-bold text-center">Why Choose FreshReminder Tracker?</h2>

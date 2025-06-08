@@ -2,9 +2,10 @@ import React from "react";
 import { motion } from "framer-motion";
 import { MdOutlineCategory } from "react-icons/md";
 import { FaBoxes } from "react-icons/fa";
+import { Link } from "react-router";
 
 const FoodCard = ({ food }) => {
-  const { title, img, category, quantity, expiryDate } = food;
+  const {_id, title, img, category, quantity, expiryDate } = food;
   food.expiryDate = new Date(expiryDate)
   const  currentDate = new Date();
   
@@ -33,7 +34,7 @@ const FoodCard = ({ food }) => {
           <FaBoxes /> Quantity: <span className="font-semibold">{quantity}</span>
         </p>
         <div className="card-actions justify-end">
-          <button className="btn bg-[#64b843]">See Details</button>
+          <Link to={`/food-details/${_id}`} className="btn bg-[#64b843]">See Details</Link>
         </div>
       </div>
     </div>

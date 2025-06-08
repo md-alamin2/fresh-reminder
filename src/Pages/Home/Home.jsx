@@ -10,7 +10,7 @@ const Home = () => {
             <Suspense fallback={<Loader></Loader>}>
                 <Slider></Slider>
             </Suspense>
-            <Suspense>
+            <Suspense fallback={<Loader></Loader>}>
                 <WhyChose></WhyChose>
             </Suspense>
             <Suspense>
