@@ -4,6 +4,7 @@ import { useLoaderData } from "react-router";
 import axios from "axios";
 import useAuth from "../../Hooks/useAuth";
 import CountDown from "../../Components/CountDown/CountDown";
+import Swal from "sweetalert2";
 
 const FoodDetails = () => {
   const {user}=useAuth();
@@ -37,16 +38,24 @@ const FoodDetails = () => {
     axios
       .patch(`http://localhost:3000/foods/${_id}`, noteData)
       .then((data) => {
-        console.log(data.data);
+        if(data.data.modifiedCount){
+          Swal.fire({
+                      title: "Note updated successfully!",
+                      icon: "success",
+                      timer: 2000,
+                    });
+        }
       })
       .catch((error) => {
         console.log(error);
       });
   };
+
+
   return (
     <div className="w-11/12 lg:container mx-auto mt-20">
       <CountDown expiryDate={expiryDate}></CountDown>
-      <div className="flex items-center gap-6 border border-gray-300 p-4 rounded-2xl">
+      <div className="flex flex-col md:flex-row items-center gap-6 border border-gray-300 p-4 rounded-2xl">
         <div>
           <img className="w-96 rounded-lg" src={img} alt="" />
         </div>

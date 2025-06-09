@@ -4,9 +4,11 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import useAuth from "../../Hooks/useAuth";
 import axios from "axios";
+import { useNavigate } from "react-router";
 
 const AddFood = () => {
   const { user } = useAuth();
+  const navigate= useNavigate();
   
   useEffect(() => {
     AOS.init({ duration: 1000 });
@@ -37,6 +39,7 @@ const AddFood = () => {
           });
         }
         form.reset();
+        navigate("/my-items")
       })
       .catch((error) => {
         console.log(error);
@@ -139,7 +142,7 @@ const AddFood = () => {
 
           <input
             type="submit"
-            value="Add Task"
+            value="Add Food"
             className="btn w-full bg-[#64b843]"
           />
         </form>
