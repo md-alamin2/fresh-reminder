@@ -22,7 +22,7 @@ const FoodCard = ({ food }) => {
         />
       </figure>
       <div className="card-body">
-        <div className="flex justify-between">
+        <div className="flex justify-between items-center">
           <h2 className="card-title text-2xl font-bold group-hover:text-[#64b843]">{title}</h2>
           <span className={`${currentDate>expiryDate ? "block" : "hidden"} badge badge-outline badge-error`}>Expired</span>
         </div>

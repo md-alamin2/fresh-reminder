@@ -3,6 +3,7 @@ import React from "react";
 import { useLoaderData } from "react-router";
 import axios from "axios";
 import useAuth from "../../Hooks/useAuth";
+import CountDown from "../../Components/CountDown/CountDown";
 
 const FoodDetails = () => {
   const {user}=useAuth();
@@ -16,10 +17,11 @@ const FoodDetails = () => {
     quantity,
     addedDate,
     expiryDate,
-    status,
     description,
     userEmail
   } = singleFood || {};
+  const currentDay= new Date();
+  singleFood.expiryDate=(new Date(expiryDate))
 
   // add note to db
   const handleAddNote = (e) => {
@@ -43,6 +45,7 @@ const FoodDetails = () => {
   };
   return (
     <div className="w-11/12 lg:container mx-auto mt-20">
+      <CountDown expiryDate={expiryDate}></CountDown>
       <div className="flex items-center gap-6 border border-gray-300 p-4 rounded-2xl">
         <div>
           <img className="w-96 rounded-lg" src={img} alt="" />
@@ -59,7 +62,7 @@ const FoodDetails = () => {
           </p>
           <p className="text-lg border-t border-b border-dashed my-2 py-4">
             Status :{" "}
-            <span className="badge badge-success font-semibold">{status}</span>
+            <span className={`badge font-semibold ${currentDay>expiryDate?"badge-error": "badge-success"}`}>{currentDay>expiryDate? "Expired": "Fresh"}</span>
           </p>
           <p className="text-lg">
             Description:{" "}
