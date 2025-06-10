@@ -1,63 +1,15 @@
-import React, { useEffect } from "react";
-import Swal from "sweetalert2";
-import AOS from "aos";
-import "aos/dist/aos.css";
-import useAuth from "../../Hooks/useAuth";
-import axios from "axios";
-import { useNavigate } from "react-router";
+import { format } from "date-fns-tz";
+import React from "react";
 
-const AddFood = () => {
-  const { user } = useAuth();
-  const navigate= useNavigate();
+const Modal = ({ myItem, handleUpdateFood }) => {
+  const { _id, title, img, expiryDate, quantity, category, description } =
+    myItem || {};
   
-  useEffect(() => {
-    AOS.init({ duration: 1000 });
-  }, []);
-
-  const handleAddFoods = (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const formData = new FormData(form);
-    const food = Object.fromEntries(formData.entries());
-    const newFood = {
-      ...food,
-      addedDate: new Date(),
-      userEmail: user.email,
-    };
-
-    // add task to db
-    axios
-      .post("http://localhost:3000/foods", newFood)
-      .then((data) => {
-        if (data.data.insertedId) {
-          Swal.fire({
-            title: "Task added successfully!",
-            icon: "success",
-            timer: 2000,
-          });
-        }
-        form.reset();
-        navigate("/my-items")
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
   return (
-    <>
-      <title>FreshReminder-Add Task</title>
-      <div className="w-11/12 lg:container mx-auto mt-8  lg:px-28 md:py-17">
-        <div data-aos="fade-left" className="text-center md:px-18 space-y-8">
-          <h1 className="text-5xl">Add New Food</h1>
-          <p>
-            This Food Expiry Tracker website helps users manage their groceries
-            by tracking expiry dates, reducing food waste, and sending timely
-            alerts. It offers an easy way to monitor food freshness and stay
-            organized effortlessly
-          </p>
-        </div>
-        <form data-aos="fade-right" onSubmit={handleAddFoods} className="mt-8">
+    <dialog id={`${_id}`} className="modal">
+      <div className="modal-box text-start">
+        <h3 className="text-3xl font-bold text-center mb-10">Update Food</h3>
+        <form onSubmit={(e) => handleUpdateFood(e, _id)} method="dialog">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <fieldset className="fieldset rounded-box w-full">
               <label className=" text-xl">
@@ -69,6 +21,7 @@ const AddFood = () => {
                 className="input w-full"
                 placeholder="Food Title"
                 required
+                defaultValue={title}
               />
             </fieldset>
             <fieldset className="fieldset rounded-box w-full">
@@ -81,6 +34,7 @@ const AddFood = () => {
                 className="input w-full"
                 placeholder="Quantity (Pieces, Gram, KG, Liter)"
                 required
+                defaultValue={quantity}
               />
             </fieldset>
             <fieldset className="fieldset rounded-box w-full">
@@ -88,10 +42,10 @@ const AddFood = () => {
                 Category <sup className="text-red-500">*</sup>
               </label>
               <select
-                defaultValue="Pick a Category"
                 name="category"
                 className="select w-full"
                 required
+                defaultValue={category}
               >
                 <option disabled={true}>Pick a Category</option>
                 <option>Dairy</option>
@@ -110,6 +64,7 @@ const AddFood = () => {
                   name="expiryDate"
                   required
                   className="input w-full"
+                  defaultValue={format(new Date(expiryDate), "yyyy-MM-dd")}
                 />
               </label>
             </fieldset>
@@ -124,6 +79,7 @@ const AddFood = () => {
               className="input w-full"
               placeholder="Write a title"
               required
+              defaultValue={img}
             />
           </fieldset>
           <fieldset className="fieldset rounded-box w-full my-6">
@@ -135,18 +91,26 @@ const AddFood = () => {
               placeholder="Write Description"
               name="description"
               required
+              defaultValue={description}
             ></textarea>
           </fieldset>
 
           <input
             type="submit"
-            value="Add Food"
+            value="Update Food"
             className="btn w-full bg-[#64b843]"
           />
         </form>
+
+        <div className="modal-action">
+          <form method="dialog">
+            {/* if there is a button in form, it will close the modal */}
+            <button className="btn">Close</button>
+          </form>
+        </div>
       </div>
-    </>
+    </dialog>
   );
 };
 
-export default AddFood;
+export default Modal;

@@ -5,6 +5,7 @@ import axios from "axios";
 import Lottie from "lottie-react";
 import emptyLottie from "../../assets/Lottis/as-11-emptyState.json";
 import { Link } from "react-router";
+import Modal from "../Modal/Modal";
 
 const MyItemList = ({ myItemsPromise }) => {
   const myItems = use(myItemsPromise);

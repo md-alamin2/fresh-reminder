@@ -7,7 +7,7 @@ import CountDown from "../../Components/CountDown/CountDown";
 import Swal from "sweetalert2";
 
 const FoodDetails = () => {
-  const {user}=useAuth();
+  const { user } = useAuth();
   const singleFood = useLoaderData();
 
   const {
@@ -19,10 +19,10 @@ const FoodDetails = () => {
     addedDate,
     expiryDate,
     description,
-    userEmail
+    userEmail,
   } = singleFood || {};
-  const currentDay= new Date();
-  singleFood.expiryDate=(new Date(expiryDate))
+  const currentDay = new Date();
+  singleFood.expiryDate = new Date(expiryDate);
 
   // add note to db
   const handleAddNote = (e) => {
@@ -38,19 +38,18 @@ const FoodDetails = () => {
     axios
       .patch(`http://localhost:3000/foods/${_id}`, noteData)
       .then((data) => {
-        if(data.data.modifiedCount){
+        if (data.data.modifiedCount) {
           Swal.fire({
-                      title: "Note updated successfully!",
-                      icon: "success",
-                      timer: 2000,
-                    });
+            title: "Note updated successfully!",
+            icon: "success",
+            timer: 2000,
+          });
         }
       })
       .catch((error) => {
         console.log(error);
       });
   };
-
 
   return (
     <div className="w-11/12 lg:container mx-auto mt-20">
@@ -71,7 +70,13 @@ const FoodDetails = () => {
           </p>
           <p className="text-lg border-t border-b border-dashed my-2 py-4">
             Status :{" "}
-            <span className={`badge font-semibold ${currentDay>expiryDate?"badge-error": "badge-success"}`}>{currentDay>expiryDate? "Expired": "Fresh"}</span>
+            <span
+              className={`badge font-semibold ${
+                currentDay > expiryDate ? "badge-error" : "badge-success"
+              }`}
+            >
+              {currentDay > expiryDate ? "Expired" : "Fresh"}
+            </span>
           </p>
           <p className="text-lg">
             Description:{" "}
@@ -101,7 +106,7 @@ const FoodDetails = () => {
             ></textarea>
           </fieldset>
           <fieldset className="w-ful flex justify-end">
-            <input type="submit" value="Save Note" className="btn mt-4" disabled={user.email ===userEmail? false: true } />
+            <input type="submit" value="Add Note" className="btn bg-[#64b843] mt-2" disabled={user.email ===userEmail? false: true } />
           </fieldset>
         </form>
       </div>
