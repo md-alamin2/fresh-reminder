@@ -12,7 +12,7 @@ const FoodCard = ({ food }) => {
   
 
   return (
-    <div className="card bg-base-100 max-w-96 border border-gray-300 hover:shadow-xl transition-shadow hover:duration-300 group">
+    <div className="card bg-base-100 max-w-96 border border-gray-300 hover:shadow-2xl transition-shadow hover:duration-300 group">
       <figure>
         <motion.img
           whileHover={{ scale: 1.05 }}
