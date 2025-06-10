@@ -19,6 +19,7 @@ export const router = createBrowserRouter([
       {
         index: true,
         Component: Home,
+        loader:()=>fetch("http://localhost:3000/food/expiring-soon")
       },
       {
         path: "/fridge",
