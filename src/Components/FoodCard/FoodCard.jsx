@@ -12,20 +12,20 @@ const FoodCard = ({ food }) => {
   
 
   return (
-    <div className="card bg-base-100 border border-gray-300 hover:shadow-xl transition-shadow hover:duration-300 group">
+    <div className="card bg-base-100 max-w-96 border border-gray-300 hover:shadow-xl transition-shadow hover:duration-300 group">
       <figure>
         <motion.img
           whileHover={{ scale: 1.05 }}
           transition={{ duration: 0.3 }}
-          className="h-52 w-full"
+          className="h-52 w-full relative"
           src={img}
           alt=""
         />
+         <span className={`${currentDate>expiryDate ? "block" : "hidden"} badge badge-outline badge-error absolute top-2 right-2`}>Expired</span>
       </figure>
       <div className="card-body">
         <div className="flex justify-between items-center">
           <h2 className="card-title text-2xl font-bold group-hover:text-[#64b843]">{title}</h2>
-          <span className={`${currentDate>expiryDate ? "block" : "hidden"} badge badge-outline badge-error`}>Expired</span>
         </div>
 
         <p className="flex items-center gap-2 text-lg">
