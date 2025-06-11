@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useLoaderData } from "react-router";
 import FoodCard from "../../Components/FoodCard/FoodCard";
+import axios from "axios";
 
 const Fridge = () => {
   const foods = useLoaderData();
@@ -8,20 +9,22 @@ const Fridge = () => {
   const foodsCategory = foods.map((food) => food.category);
   const category = foodsCategory.slice(0, 4);
 
-
   const handleSearch = (e) => {
     e.preventDefault();
     const category = e.target.value;
-    const filteredData = foods.filter(
-      (food) => food.category === category
-    );
     if (category == "All Category") {
-      setSelectedData(foods);
-    } else {
-      setSelectedData(filteredData);
+      return setSelectedData(foods);
     }
-  };
 
+    axios
+      .get(`http://localhost:3000/food/${category}`)
+      .then((res) => {
+        setSelectedData(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <div className="w-11/12 lg:container mx-auto mt-20">
