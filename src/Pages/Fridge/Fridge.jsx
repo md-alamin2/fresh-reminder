@@ -17,7 +17,7 @@ const Fridge = () => {
     }
 
     axios
-      .get(`http://localhost:3000/food/${category}`)
+      .get(`http://localhost:3000/foods/category/${category}`)
       .then((res) => {
         setSelectedData(res.data);
       })
