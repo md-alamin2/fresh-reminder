@@ -4,7 +4,6 @@ import FoodCard from "../../Components/FoodCard/FoodCard";
 
 const Fridge = () => {
   const foods = useLoaderData();
-  console.log(foods);
   const [selectedData, setSelectedData] = useState(foods);
   const foodsCategory = foods.map((food) => food.category);
   const category = foodsCategory.slice(0, 4);
@@ -31,7 +30,6 @@ const Fridge = () => {
         Explore all food items in our community. Track expiry dates and find
         inspiration for your meals.
       </p>
-
       {/* search section */}
       <div className="w-full mt-10">
         <form className="w-full flex items-center bg-base-200 rounded-2xl">
@@ -60,7 +58,6 @@ const Fridge = () => {
           </fieldset>
         </form>
       </div>
-
       {/* food card section */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-15">
         {selectedData.map((food) => (
