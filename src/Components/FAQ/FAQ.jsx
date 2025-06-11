@@ -17,8 +17,8 @@ const FAQ = () => {
         manage and reduce your food waste.
       </p>
       <div className="mt-10">
-        {faqData.map((faq) => (
-          <div className="collapse collapse-plus bg-base-100 border border-base-300 mt-1">
+        {faqData.map((faq, index) => (
+          <div key={index} className="collapse collapse-plus bg-base-100 border border-base-300 mt-1">
             <input type="radio" name="my-accordion-3" />
             <div className="collapse-title font-semibold">{faq.question}</div>
             <div className="collapse-content text-sm">{faq.answer}</div>

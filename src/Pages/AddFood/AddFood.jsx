@@ -5,11 +5,12 @@ import "aos/dist/aos.css";
 import useAuth from "../../Hooks/useAuth";
 import axios from "axios";
 import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
 
 const AddFood = () => {
   const { user } = useAuth();
-  const navigate= useNavigate();
-  
+  const navigate = useNavigate();
+
   useEffect(() => {
     AOS.init({ duration: 1000 });
   }, []);
@@ -37,10 +38,20 @@ const AddFood = () => {
           });
         }
         form.reset();
-        navigate("/my-items")
+        navigate("/my-items");
       })
       .catch((error) => {
-        console.log(error);
+        const errorMessage = error.status;
+        toast.error(`Login failed ${errorMessage}`, {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
       });
   };
 

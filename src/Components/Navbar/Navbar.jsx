@@ -161,9 +161,9 @@ const Navbar = () => {
               </ul>
             </div>
             <button
-              className="btn btn-error btn-outline md:block hidden"
+              className="btn btn-error btn-outline md:flex items-center gap-1 hidden"
               onClick={handleLogout}
-            >
+            > Logout
               <MdOutlineLogout size={20} />
             </button>
           </div>
