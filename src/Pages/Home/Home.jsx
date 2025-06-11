@@ -6,6 +6,7 @@ import Tips from '../../Components/Tips/Tips';
 import NearlyExpired from '../../Components/NearlyExpired/NearlyExpired';
 import { useLoaderData } from 'react-router';
 import ExpiredFood from '../../Components/ExpiredFood/ExpiredFood';
+import FAQ from '../../Components/FAQ/FAQ';
 
 const Home = () => {
     const nearlyExpiredData = useLoaderData();
@@ -23,6 +24,9 @@ const Home = () => {
             </Suspense>
             <Suspense>
                 <Tips></Tips>
+            </Suspense>
+            <Suspense>
+                <FAQ></FAQ>
             </Suspense>
         </div>
     );

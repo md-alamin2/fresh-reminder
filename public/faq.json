@@ -1,0 +1,22 @@
+[
+  {
+    "question": "What is the Fresh Reminder?",
+    "answer": "The Fresh Reminder is a web app that helps you monitor food items and get alerts before they expire to reduce waste and save money."
+  },
+  {
+    "question": "How do I add a new food item?",
+    "answer": "You can add a new item by clicking the 'Add Food' button and filling out details like name, category, quantity, expiry date, and notes."
+  },
+  {
+    "question": "Can I edit or delete food entries?",
+    "answer": "Yes, each item has options to edit its details or delete it completely from your list whenever needed."
+  },
+  {
+    "question": "How does the system notify me before expiry?",
+    "answer": "The app highlights items that are expiring soon or already expired so you can take timely action. Future versions may include notification alerts."
+  },
+  {
+    "question": "Is my food data saved securely?",
+    "answer": "Yes, your food data is stored securely and only accessible to you. We prioritize user privacy and data safety."
+  }
+]
