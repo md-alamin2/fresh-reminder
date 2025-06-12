@@ -7,17 +7,37 @@ const Fridge = () => {
   const foods = useLoaderData();
   const [selectedData, setSelectedData] = useState(foods);
   const foodsCategory = foods.map((food) => food.category);
-  const category = foodsCategory.slice(0, 4);
+  const categories = foodsCategory.slice(0, 4);
+  const [category, setCategory] = useState(null);
 
-  const handleSearch = (e) => {
+  const handleCategoryFilter = (e) => {
     e.preventDefault();
     const category = e.target.value;
     if (category == "All Category") {
+      setCategory(null);
       return setSelectedData(foods);
     }
 
     axios
       .get(`http://localhost:3000/foods/category/${category}`)
+      .then((res) => {
+        setSelectedData(res.data);
+        if (category != "All Category") {
+          setCategory(category);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const from = e.target;
+    const searchValue = from.search.value;
+
+    axios
+      .get(`http://localhost:3000/food/search?searchValue=${searchValue}`)
       .then((res) => {
         setSelectedData(res.data);
       })
@@ -34,19 +54,26 @@ const Fridge = () => {
         inspiration for your meals.
       </p>
       {/* search section */}
-      <div className="w-full mt-10">
-        <form className="w-full flex items-center bg-base-200 rounded-2xl">
+      <div className="w-full mt-10 bg-base-200 py-6 rounded-2xl">
+        <form
+          onSubmit={handleSearch}
+          className="w-full flex items-center gap-8 px-6"
+        >
           {/* search */}
-          <fieldset className="fieldset flex items-center w-[80%] px-4 py-6">
+          <fieldset className="fieldset flex items-center w-[90%]">
             <input
               type="text"
-              className="input w-full"
+              className="input rounded-2xl w-full"
+              name="search"
               placeholder="Search by Food name and category"
             />
-            <input type="submit" value="Search" className="btn" />
+            <input type="submit" value="Search" className="btn bg-[#64b843]" />
           </fieldset>
           {/* filter */}
-          <fieldset onChange={handleSearch} className="fieldset  w-[20%]">
+          <fieldset
+            onChange={handleCategoryFilter}
+            className="fieldset  w-[10%]"
+          >
             <select
               defaultValue="All Category"
               name="type"
@@ -54,19 +81,32 @@ const Fridge = () => {
             >
               <option>All Category</option>
 
-              {category.map((category) => (
+              {categories.map((category) => (
                 <option key={category}>{category}</option>
               ))}
             </select>
           </fieldset>
         </form>
+        <span
+          className={`badge bg-[#64b843] mt-2 ml-6 ${
+            category ? "block" : "hidden"
+          }`}
+        >
+          Category: <span className="font-bold">{category}</span>
+        </span>
       </div>
       {/* food card section */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-15">
-        {selectedData.map((food) => (
-          <FoodCard key={food._id} food={food}></FoodCard>
-        ))}
-      </div>
+      {selectedData.length <= 0 ? (
+        <div className="w-11/12 lg:container mx-auto mt-20">
+          <h2 className="text-5xl font-bold text-center">No Item found</h2>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-15">
+          {selectedData.map((food) => (
+            <FoodCard key={food._id} food={food}></FoodCard>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

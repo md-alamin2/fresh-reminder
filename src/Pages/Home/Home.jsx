@@ -7,6 +7,7 @@ import NearlyExpired from '../../Components/NearlyExpired/NearlyExpired';
 import { useLoaderData } from 'react-router';
 import ExpiredFood from '../../Components/ExpiredFood/ExpiredFood';
 import FAQ from '../../Components/FAQ/FAQ';
+import Impact from '../../Components/Impact/Impact';
 
 const Home = () => {
     const nearlyExpiredData = useLoaderData();
@@ -15,6 +16,7 @@ const Home = () => {
             <Suspense fallback={<Loader></Loader>}>
                 <Slider></Slider>
             </Suspense>
+            <Impact nearlyExpiredData={nearlyExpiredData}></Impact>
             <NearlyExpired nearlyExpiredData={nearlyExpiredData}></NearlyExpired>
             <Suspense>
                 <ExpiredFood></ExpiredFood>
