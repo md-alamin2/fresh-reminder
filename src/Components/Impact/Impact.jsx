@@ -17,9 +17,9 @@ const Impact = ({ nearlyExpiredData }) => {
   }, []);
 
   return (
-    <div className="w-11/12 lg:container mx-auto mt-30 px-40">
-      <h2 className="text-5xl font-bold text-center">Making a Real Impact</h2>
-      <p className="text-xl font-thin text-center mt-5 max-w-lg mx-auto">
+    <div className="w-11/12 lg:container mx-auto mt-30 md:px-10 lg:px-40">
+      <h2 className="text-4xl md:text-5xl font-bold text-center">Making a Real Impact</h2>
+      <p className="text-lg md:text-xl font-thin text-center mt-5 max-w-lg mx-auto">
         See how our community is actively reducing food waste and saving money
       </p>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">

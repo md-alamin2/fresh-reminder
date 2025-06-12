@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useLoaderData } from "react-router";
 import FoodCard from "../../Components/FoodCard/FoodCard";
 import axios from "axios";
+import { CiSearch } from "react-icons/ci";
 
 const Fridge = () => {
   const foods = useLoaderData();
@@ -48,8 +49,8 @@ const Fridge = () => {
 
   return (
     <div className="w-11/12 lg:container mx-auto mt-20">
-      <h2 className="text-5xl font-bold text-center">Community Fridge</h2>
-      <p className="text-xl font-thin text-center mt-5 max-w-xl mx-auto">
+      <h2 className="text-4xl md:text-5xl font-bold text-center">Community Fridge</h2>
+      <p className="text-lg md:text-xl font-thin text-center mt-5 max-w-xl mx-auto">
         Explore all food items in our community. Track expiry dates and find
         inspiration for your meals.
       </p>
@@ -57,27 +58,27 @@ const Fridge = () => {
       <div className="w-full mt-10 bg-base-200 py-6 rounded-2xl">
         <form
           onSubmit={handleSearch}
-          className="w-full flex items-center gap-8 px-6"
+          className="w-full flex flex-col md:flex-row items-center gap-8 px-6"
         >
           {/* search */}
-          <fieldset className="fieldset flex items-center w-[90%]">
+          <fieldset className="fieldset flex items-center md:w-[90%]">
             <input
               type="text"
               className="input rounded-2xl w-full"
               name="search"
               placeholder="Search by Food name and category"
             />
-            <input type="submit" value="Search" className="btn bg-[#64b843]" />
+            <button className="btn bg-[#64b843]"><CiSearch size={20}/> Search</button>
           </fieldset>
           {/* filter */}
           <fieldset
             onChange={handleCategoryFilter}
-            className="fieldset  w-[10%]"
+            className="fieldset  md:w-[10%]"
           >
             <select
               defaultValue="All Category"
               name="type"
-              className="select w-30 md:w-52"
+              className="select w-40 md:w-52"
             >
               <option>All Category</option>
 
@@ -88,7 +89,7 @@ const Fridge = () => {
           </fieldset>
         </form>
         <span
-          className={`badge bg-[#64b843] mt-2 ml-6 ${
+          className={`badge bg-[#64b843] mt-5 md:mt-2 mx-auto md:mx-0 md:ml-6 ${
             category ? "block" : "hidden"
           }`}
         >

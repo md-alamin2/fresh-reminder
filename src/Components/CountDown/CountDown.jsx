@@ -40,7 +40,7 @@ const CountDown = ({ expiryDate }) => {
     return (
       <div className="bg-base-200 rounded-2xl  md:px-6 py-8 mb-5">
         <h2 className="text-3xl font-bold text-center mb-4">Food Will Expired IN</h2>
-        <div className="flex justify-center space-x-3 md:space-x-6">
+        <div className="flex justify-center space-x-2 md:space-x-6">
           <div>
             <div className="text-2xl md:text-4xl font-bold text-white bg-[#64b843] py-1 px-2 rounded-lg inline">
               {days}

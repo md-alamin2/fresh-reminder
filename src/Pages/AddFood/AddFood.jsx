@@ -60,12 +60,9 @@ const AddFood = () => {
       <title>FreshReminder-Add Task</title>
       <div className="w-11/12 lg:container mx-auto mt-8  lg:px-28 md:py-17">
         <div data-aos="fade-left" className="text-center md:px-18 space-y-8">
-          <h1 className="text-5xl">Add New Food</h1>
-          <p>
-            This Food Expiry Tracker website helps users manage their groceries
-            by tracking expiry dates, reducing food waste, and sending timely
-            alerts. It offers an easy way to monitor food freshness and stay
-            organized effortlessly
+          <h1 className="text-4xl md:text-5xl font-bold">Add New Food</h1>
+          <p className="text-lg md:text-xl">
+            Fill out the form below to add a new dish to your menu. Include the name, price, category, image, and a brief description to keep your menu fresh and appealing.
           </p>
         </div>
         <form data-aos="fade-right" onSubmit={handleAddFoods} className="mt-8">

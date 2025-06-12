@@ -60,7 +60,7 @@ const MyItemList = ({ myItemsPromise }) => {
 
   return (
     <div className="overflow-x-auto rounded-box border border-base-content/10 bg-base-100 mt-10">
-      <table className="table">
+      <table className="table table-xs md:table-md">
         {/* head */}
         <thead>
           <tr className="text-center">

@@ -10,9 +10,9 @@ const FAQ = () => {
       .then((data) => setFaqDAta(data));
   }, []);
   return (
-    <div className="w-11/12 lg:container mx-auto mt-30 ">
-      <h2 className="text-5xl font-bold text-center">FAQ Section</h2>
-      <p className="text-xl font-thin text-center mt-5 max-w-xl mx-auto">
+    <div className="w-11/12 lg:container mx-auto mt-30 md:px-10 lg:px-40">
+      <h2 className="text-4xl md:text-5xl font-bold text-center">FAQ Section</h2>
+      <p className="text-lg md:text-xl font-thin text-center mt-5 max-w-xl mx-auto">
         Find quick answers to common questions about using our Fresh Reminder to
         manage and reduce your food waste.
       </p>

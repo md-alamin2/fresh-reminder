@@ -1,7 +1,7 @@
 import React from "react";
 import { format } from "date-fns";
 import { MdDeleteForever } from "react-icons/md";
-import { FaRegEdit } from "react-icons/fa";
+import { FaEdit } from "react-icons/fa";
 import Modal from "../Modal/Modal";
 import axios from "axios";
 import Swal from "sweetalert2";
@@ -20,10 +20,11 @@ const MyItemRow = ({ myItem, handleDeleteFood }) => {
       .put(`http://localhost:3000/foods/${id}`, food)
       .then((data) => {
         if (data.data.modifiedCount) {
-          document.getElementById(id).close()
+          document.getElementById(id).close();
           Swal.fire({
             title: "Food Update successfully!",
             icon: "success",
+            timer:2000
           });
         }
       })
@@ -34,9 +35,9 @@ const MyItemRow = ({ myItem, handleDeleteFood }) => {
 
   return (
     <tr className="text-center">
-      <td className="flex items-center gap-3">
-        <img className="w-20 rounded-2xl" src={img} alt="" />
-        <h3 className="text-lg font-semibold">{title}</h3>
+      <td className="flex flex-col md:flex-row items-center gap-3">
+        <img className="w-20 rounded-xl" src={img} alt="" />
+        <h3 className="md:text-lg font-semibold">{title}</h3>
       </td>
       <td>
         <p className="font-bold">{quantity}</p>
@@ -45,16 +46,17 @@ const MyItemRow = ({ myItem, handleDeleteFood }) => {
         <p className="font-bold">{format(new Date(expiryDate), "P")}</p>
       </td>
       <td>
-        <button onClick={() => handleDeleteFood(_id)} className="btn mr-2">
-          <MdDeleteForever size={20} />
-        </button>
-        {/* Open the modal using document.getElementById('ID').showModal() method */}
-        <button
-          className="btn"
-          onClick={() => document.getElementById(_id).showModal()}
-        >
-          <FaRegEdit size={20} />
-        </button>
+        <div className="flex flex-col md:flex-row gap-1 md:gap-2 justify-center">
+          {/* Open the modal using document.getElementById('ID').showModal() method */}
+          <button
+            className="btn btn-md"
+            onClick={() => document.getElementById(_id).showModal()}
+          ><FaEdit size={18} /></button>
+          <button
+            onClick={() => handleDeleteFood(_id)}
+            className="btn btn-md"
+          ><MdDeleteForever size={18} /></button>
+        </div>
         <Modal myItem={myItem} handleUpdateFood={handleUpdateFood}></Modal>
       </td>
     </tr>

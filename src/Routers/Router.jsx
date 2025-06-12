@@ -10,6 +10,7 @@ import MyItems from "../Pages/MyItems/MyItems";
 import Loader from "../Components/Laoder/Loader";
 import PrivateRoutes from "./PrivateRoute";
 import FoodDetails from "../Pages/FoodDetails/FoodDetails";
+import Profile from "../Pages/Profile/Profile";
 
 export const router = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ export const router = createBrowserRouter([
       {
         path: "/my-items",
         element: <PrivateRoutes><MyItems></MyItems></PrivateRoutes>,
+      },
+      {
+        path:"/user-profile",
+        element:<PrivateRoutes><Profile></Profile></PrivateRoutes>
       },
       {
         path: "/login",

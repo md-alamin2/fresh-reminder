@@ -9,8 +9,8 @@ const Tips = () => {
   return (
     <div className="mt-20 py-20 bg-base-200">
       <div className="w-11/12 lg:container mx-auto">
-        <h2 className="text-5xl font-bold text-center">Food Management Tips</h2>
-        <p className="text-xl font-thin text-center mt-5 max-w-lg mx-auto">
+        <h2 className="text-4xl md:text-5xl font-bold text-center">Food Management Tips</h2>
+        <p className="text-lg md:text-xl font-thin text-center mt-5 max-w-lg mx-auto">
           Expert advice to help you make the most of your food inventory
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">

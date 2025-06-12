@@ -85,7 +85,7 @@ const Login = () => {
     <div>
       <title>TaskLinker-Login</title>
       <div className="w-11/12 lg:container mx-auto flex flex-col md:flex-row md:items-center bg-base-100  mt-5 md:mt-10 md:px-40">
-        <div data-aos="fade-right" className="hidden md:w-[50%] md:flex justify-center">
+        <div data-aos="fade-right" className="hidden md:w-[50%] lg:flex justify-center">
           <Lottie animationData={loginImg} style={{width:500}}></Lottie>
         </div>
         <form data-aos="fade-left" onSubmit={handleLogin} className="card-body md:w-[50%]">

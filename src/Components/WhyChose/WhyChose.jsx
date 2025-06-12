@@ -6,8 +6,8 @@ const WhyChose = () => {
   const whyChoseData = use(whyChosePromise);
   return (
     <div className="w-11/12 lg:container mx-auto mt-30">
-      <h2 className="text-5xl font-bold text-center">Why Choose FreshReminder Tracker?</h2>
-      <p className="text-xl font-thin text-center mt-5 max-w-xl mx-auto">
+      <h2 className="text-4xl md:text-5xl font-bold text-center">Why Choose FreshReminder Tracker?</h2>
+      <p className="text-lg md:text-xl font-thin text-center mt-5 max-w-xl mx-auto">
         Powerful features designed to help you manage your food inventory
         efficiently
       </p>
