@@ -1,4 +1,4 @@
-import { FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa";
+import { FaFacebook, FaTwitter, FaInstagram, FaLink, FaLinkedin } from "react-icons/fa";
 import logo from "../../assets/imgs/as-11-logo.png";
 import useAuth from "../../Hooks/useAuth";
 import { Link, NavLink } from "react-router";
@@ -88,13 +88,13 @@ export default function Footer() {
         <div>
           <h3 className="footer-title">Follow Us</h3>
           <div className="flex space-x-4 mt-2">
-            <a href="#" className="text-xl text-blue-500">
+            <a href="https://www.facebook.com/alamin.akash.7399" target="_blank" className="text-xl hover:text-blue-500">
               <FaFacebook />
             </a>
-            <a href="#" className="text-xl text-sky-400">
-              <FaTwitter />
+            <a href="https://www.linkedin.com/in/md-al-amin-7a191b339/" target="_blank" className="text-xl hover:text-sky-400">
+              <FaLinkedin />
             </a>
-            <a href="#" className="text-xl text-pink-600">
+            <a href="https://www.instagram.com/md.alamin1176" target="_blank" className="text-xl hover:text-pink-600">
               <FaInstagram />
             </a>
           </div>

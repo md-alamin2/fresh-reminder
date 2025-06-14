@@ -3,9 +3,10 @@ import Navbar from "../Components/Navbar/Navbar";
 import { Outlet, useNavigation } from "react-router";
 import Footer from "../Components/Footer/Footer";
 import Loader from "../Components/Laoder/Loader";
+import ScrollToTop from "../Components/ScrollToTop/ScrollToTop";
 
 const Root = () => {
-  const navigation = useNavigation()
+  const navigation = useNavigation();
   return (
     <div className="relative">
       <header className="sticky top-0 z-1 backdrop-blur-md shadow-sm">
@@ -13,9 +14,15 @@ const Root = () => {
       </header>
       <main>
         {navigation.state === "loading" ? (
-          <Loader></Loader>
+          <>
+            <ScrollToTop></ScrollToTop>
+            <Loader></Loader>
+          </>
         ) : (
-          <Outlet></Outlet>
+          <>
+            <ScrollToTop></ScrollToTop>
+            <Outlet></Outlet>
+          </>
         )}
       </main>
       <footer className="mt-30">

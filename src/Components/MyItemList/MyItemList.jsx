@@ -1,4 +1,4 @@
-import React, { use, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import MyItemRow from "../MyItemRow/MyItemRow";
 import Swal from "sweetalert2";
 import axios from "axios";
@@ -6,10 +6,17 @@ import Lottie from "lottie-react";
 import emptyLottie from "../../assets/Lottis/as-11-emptyState.json";
 import { Link } from "react-router";
 import Modal from "../Modal/Modal";
+import Aos from "aos";
+import useAuth from "../../Hooks/useAuth";
 
 const MyItemList = ({ myItemsPromise }) => {
   const myItems = use(myItemsPromise);
   const [myItemsData, setMyItemsData] = useState(myItems);
+  const {user} = useAuth();
+
+  useEffect(() => {
+    Aos.init({ duration: 1000 });
+  }, []);
 
   // delete added food
   const handleDeleteFood = (id) => {
@@ -25,7 +32,11 @@ const MyItemList = ({ myItemsPromise }) => {
       if (result.isConfirmed) {
         // delete food
         axios
-          .delete(`http://localhost:3000/foods/${id}`)
+          .delete(`https://ph-assignment-11-server-omega.vercel.app/foods/${id}`,{
+            headers:{
+              Authorization:`Bearer ${user.accessToken}`
+            }
+          })
           .then((data) => {
             const remainingFood = myItemsData.filter(
               (myItem) => myItem._id !== id
@@ -40,7 +51,7 @@ const MyItemList = ({ myItemsPromise }) => {
             }
           })
           .catch((error) => {
-            console.log(error);
+            alert(error);
           });
       }
     });
@@ -48,11 +59,15 @@ const MyItemList = ({ myItemsPromise }) => {
 
   if (myItemsData.length <= 0) {
     return (
-      <div className="flex justify-center mt-5">
+      <div data-aos="zoom-out" className="flex justify-center mt-5">
         <div className="text-center space-y-4">
           <Lottie animationData={emptyLottie} style={{ height: 300 }}></Lottie>
-          <h3 className="text-3xl font-bold">You don't have added any food yet</h3>
-          <Link to="/add-food" className="btn bg-[#64b843]">Add Food</Link>
+          <h3 className="text-3xl font-bold">
+            You don't have added any food yet
+          </h3>
+          <Link to="/add-food" className="btn bg-[#64b843]">
+            Add Food
+          </Link>
         </div>
       </div>
     );

@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:3000/",
+  baseURL: "https://ph-assignment-11-server-omega.vercel.app/",
 });
 
 const useAxiosSecure = () => {
@@ -33,7 +33,7 @@ const useAxiosSecure = () => {
           })
           .catch((error) => {
             const errorMessage = error.status;
-            toast.error(`Login failed ${errorMessage}`, {
+            toast.error(`${errorMessage}`, {
               position: "top-right",
               autoClose: 3000,
               hideProgressBar: false,

@@ -1,9 +1,9 @@
 import { format } from "date-fns-tz";
 import React from "react";
 
-const Modal = ({ myItem, handleUpdateFood }) => {
+const Modal = ({ items, handleUpdateFood }) => {
   const { _id, title, img, expiryDate, quantity, category, description } =
-    myItem || {};
+    items || {};
   
   return (
     <dialog id={`${_id}`} className="modal">
@@ -105,7 +105,7 @@ const Modal = ({ myItem, handleUpdateFood }) => {
         <div className="modal-action">
           <form method="dialog">
             {/* if there is a button in form, it will close the modal */}
-            <button className="btn">Close</button>
+            <button className="btn bg-[#64b843]">Close</button>
           </form>
         </div>
       </div>

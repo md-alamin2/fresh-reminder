@@ -142,7 +142,7 @@ const Navbar = () => {
           </ul>
         </div>
         <Link to="/" className=" flex items-center gap-2 md:text-2xl font-bold">
-          <img className="w-12 md:w-14" src={logo} alt="logo" /> FreshReminder
+          <img className="w-10 md:w-14" src={logo} alt="logo" /> FreshReminder
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">

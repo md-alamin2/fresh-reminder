@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { format } from "date-fns";
 import { MdDeleteForever } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
 import Modal from "../Modal/Modal";
 import axios from "axios";
 import Swal from "sweetalert2";
+import useAuth from "../../Hooks/useAuth";
 
 const MyItemRow = ({ myItem, handleDeleteFood }) => {
-  const { _id, title, img, expiryDate, quantity } = myItem || {};
+  const [items, setItems]= useState(myItem);
+  const { _id, title, img, expiryDate, quantity } = items || {};
+  const {user}=useAuth();
 
   const handleUpdateFood = (e, id) => {
     e.preventDefault();
@@ -17,24 +20,29 @@ const MyItemRow = ({ myItem, handleDeleteFood }) => {
 
     // update food
     axios
-      .put(`http://localhost:3000/foods/${id}`, food)
+      .put(`https://ph-assignment-11-server-omega.vercel.app/foods/${id}`, food, {
+        headers:{
+          Authorization:`Bearer ${user.accessToken}`
+        }
+      })
       .then((data) => {
         if (data.data.modifiedCount) {
+          setItems(food)
           document.getElementById(id).close();
           Swal.fire({
             title: "Food Update successfully!",
             icon: "success",
-            timer:2000
+            timer: 2000,
           });
         }
       })
       .catch((error) => {
-        console.log(error);
+        alert(error);
       });
   };
 
   return (
-    <tr className="text-center">
+    <tr data-aos="fade-left" className="text-center">
       <td className="flex flex-col md:flex-row items-center gap-3">
         <img className="w-20 rounded-xl" src={img} alt="" />
         <h3 className="md:text-lg font-semibold">{title}</h3>
@@ -49,15 +57,19 @@ const MyItemRow = ({ myItem, handleDeleteFood }) => {
         <div className="flex flex-col md:flex-row gap-1 md:gap-2 justify-center">
           {/* Open the modal using document.getElementById('ID').showModal() method */}
           <button
-            className="btn btn-md"
+            className="btn btn-sm md:btn-md bg-[#64b843]"
             onClick={() => document.getElementById(_id).showModal()}
-          ><FaEdit size={18} /></button>
+          >
+            <FaEdit size={18} />
+          </button>
           <button
             onClick={() => handleDeleteFood(_id)}
-            className="btn btn-md"
-          ><MdDeleteForever size={18} /></button>
+            className="btn btn-sm md:btn-md bg-[#64b843]"
+          >
+            <MdDeleteForever size={18} />
+          </button>
         </div>
-        <Modal myItem={myItem} handleUpdateFood={handleUpdateFood}></Modal>
+        <Modal items={items} handleUpdateFood={handleUpdateFood}></Modal>
       </td>
     </tr>
   );

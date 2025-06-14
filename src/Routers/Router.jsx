@@ -20,12 +20,12 @@ export const router = createBrowserRouter([
       {
         index: true,
         Component: Home,
-        loader:()=>fetch("http://localhost:3000/food/expiring-soon")
+        loader:()=>fetch("https://ph-assignment-11-server-omega.vercel.app/food/expiring-soon")
       },
       {
         path: "/fridge",
         Component: Fridge,
-        loader:()=>fetch("http://localhost:3000/foods"),
+        loader:()=>fetch("https://ph-assignment-11-server-omega.vercel.app/foods"),
         hydrateFallbackElement:<Loader></Loader>
       },
       {
@@ -35,7 +35,7 @@ export const router = createBrowserRouter([
       {
         path:"/food-details/:id",
         element:<PrivateRoutes><FoodDetails></FoodDetails></PrivateRoutes>,
-        loader:({params})=>fetch(`http://localhost:3000/foods/${params.id}`),
+        loader:({params})=>fetch(`https://ph-assignment-11-server-omega.vercel.app/foods/${params.id}`),
         hydrateFallbackElement:<Loader></Loader>
       },
       {

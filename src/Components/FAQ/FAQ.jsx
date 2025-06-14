@@ -1,24 +1,42 @@
 import React, { useEffect, useState } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import Aos from "aos";
+import BlurText from "../../../Reactbits/BlurText/BlurText";
 
 const FAQ = () => {
   const [faqData, setFaqDAta] = useState([]);
-  console.log(faqData);
 
   useEffect(() => {
     fetch("/faq.json")
       .then((res) => res.json())
       .then((data) => setFaqDAta(data));
+
+    Aos.init({ duration: 1000 });
   }, []);
   return (
     <div className="w-11/12 lg:container mx-auto mt-30 md:px-10 lg:px-40">
-      <h2 className="text-4xl md:text-5xl font-bold text-center">FAQ Section</h2>
-      <p className="text-lg md:text-xl font-thin text-center mt-5 max-w-xl mx-auto">
-        Find quick answers to common questions about using our Fresh Reminder to
-        manage and reduce your food waste.
-      </p>
+      <div>
+        <h2 className="w-full text-center">
+          <BlurText
+            text="Common Questions"
+            delay={500}
+            animateBy="words"
+            direction="Bottom"
+            className="text-4xl md:text-5xl font-bold text-center max-w-[480px] mx-auto"
+          />
+        </h2>
+        <p className="text-lg md:text-xl font-thin text-center mt-5 max-w-xl mx-auto">
+          Find quick answers to common questions about using our Fresh Reminder
+          to manage and reduce your food waste.
+        </p>
+      </div>
       <div className="mt-10">
         {faqData.map((faq, index) => (
-          <div key={index} className="collapse collapse-plus bg-base-100 border border-base-300 mt-1">
+          <div
+            key={index}
+            className="collapse collapse-plus bg-base-100 border border-base-300 mt-1"
+          >
             <input type="radio" name="my-accordion-3" />
             <div className="collapse-title font-semibold">{faq.question}</div>
             <div className="collapse-content text-sm">{faq.answer}</div>

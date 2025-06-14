@@ -11,6 +11,7 @@ const AddFood = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
 
+
   useEffect(() => {
     AOS.init({ duration: 1000 });
   }, []);
@@ -28,7 +29,11 @@ const AddFood = () => {
 
     // add task to db
     axios
-      .post("http://localhost:3000/foods", newFood)
+      .post("https://ph-assignment-11-server-omega.vercel.app/foods", newFood,{
+        headers: {
+          Authorization: `Bearer ${user.accessToken}`
+        }
+      })
       .then((data) => {
         if (data.data.insertedId) {
           Swal.fire({
