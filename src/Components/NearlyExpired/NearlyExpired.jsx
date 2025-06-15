@@ -36,7 +36,7 @@ const NearlyExpired = ({ nearlyExpiredData }) => {
               nearlyExpiredData.length == 1 && "lg:grid-cols-1"
             } ${nearlyExpiredData.length == 2 && "lg:grid-cols-2"} ${
               nearlyExpiredData.length >= 3 && "lg:grid-cols-3"
-            } justify-self-center gap-8 mt-10`}
+            } lg:max-w-5/6 mx-auto gap-8 mt-10`}
           >
             {nearlyExpiredData.map((food) => (
               <FoodCard key={food._id} food={food}></FoodCard>

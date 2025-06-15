@@ -9,7 +9,8 @@ import { LuTag } from "react-icons/lu";
 import { FaBoxes } from "react-icons/fa";
 import { MdOutlineDateRange } from "react-icons/md";
 import { SiCodefresh } from "react-icons/si";
-import {motion} from "framer-motion";
+import { motion } from "framer-motion";
+import NoteModal from "../../Components/NoteModal/NoteModal";
 
 const FoodDetails = () => {
   const { user } = useAuth();
@@ -42,10 +43,15 @@ const FoodDetails = () => {
     };
     // update note on db
     axios
-      .patch(`https://ph-assignment-11-server-omega.vercel.app/foods/${_id}`, noteData)
+      .patch(
+        `https://ph-assignment-11-server-omega.vercel.app/foods/${_id}`,
+        noteData
+      )
       .then((data) => {
         if (data.data.modifiedCount) {
           setNoteData(noteData);
+          form.reset();
+          document.getElementById("my_modal_3").close()
           Swal.fire({
             title: "Note updated successfully!",
             icon: "success",
@@ -59,9 +65,14 @@ const FoodDetails = () => {
   };
 
   return (
-    <motion.div initial={{opacity:0}} animate={{opacity:1}} transition={{duration:1}} className="w-11/12 lg:container mx-auto mt-20">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+      className="w-11/12 lg:container mx-auto mt-20"
+    >
       <CountDown expiryDate={expiryDate}></CountDown>
-      <div  className="flex flex-col md:flex-row items-center gap-6 border border-gray-300 p-4 rounded-2xl">
+      <div className="flex flex-col md:flex-row items-center gap-6 border border-gray-300 p-4 rounded-2xl">
         <div>
           <img className="w-96 rounded-lg" src={img} alt="" />
         </div>
@@ -99,35 +110,41 @@ const FoodDetails = () => {
         </div>
       </div>
       {/* note area */}
-      <motion.div initial={{opacity:0}} animate={{opacity:1}} transition={{duration:1}} className="bg-base-200 rounded-2xl p-6 mt-8">
-        <h3 className="text-xl font-semibold">Notes:</h3>
-        {noteData ? (
-          <p className="text-lg flex items-center gap-1 mt-5">
-            <MdOutlineDateRange /> Note Added Date :
-             {format(new Date(noteData?.note_added_date), "PP")}
-          </p>
-        ) : (
-          ""
-        )}
-        <form onSubmit={handleAddNote} className="mt-2">
-          <fieldset>
-            <textarea
-              name="note_dec"
-              className="textarea textarea-lg h-52 w-full"
-              placeholder="Write your note"
-              defaultValue={noteData?.note_dec}
-            ></textarea>
-          </fieldset>
-          <fieldset className="w-ful flex justify-end">
-            <input
-              type="submit"
-              value="Add Note"
-              className="btn bg-[#64b843] mt-2"
-              disabled={user.email === userEmail ? false : true}
-            />
-          </fieldset>
-        </form>
-      </motion.div>
+      <div className="mt-8">
+        <h3 className="text-xl font-semibold">Note:</h3>
+        <div className="card max-w-96 bg-base-100 card-xs shadow-sm border border-gray-300 mt-5">
+          <div className="card-body">
+            {noteData ? (
+              <>
+                <p className="text-sm flex items-center gap-1">
+                  <MdOutlineDateRange />
+                  {format(new Date(noteData?.note_added_date), "PP")}
+                </p>
+                <p className="text-base font-thin opacity-70">
+                  {noteData?.note_dec}
+                </p>
+              </>
+            ) : (
+              <h2 className="text-lg font-bold text-center">
+                Note isn't added yet🔍
+              </h2>
+            )}
+            {/* You can open the modal using document.getElementById('ID').showModal() method */}
+            <div className="flex justify-end">
+              <button
+                disabled={user.email === userEmail ? false : true}
+                className={`btn bg-[#64b843] ${user.email != userEmail ? "cursor-pointer": "cursor-not-allowed"}`}
+                onClick={() =>
+                  document.getElementById("my_modal_3").showModal()
+                }
+              >
+                Add Note
+              </button>
+              <NoteModal userEmail={userEmail} handleAddNote={handleAddNote}></NoteModal>
+            </div>
+          </div>
+        </div>
+      </div>
     </motion.div>
   );
 };
