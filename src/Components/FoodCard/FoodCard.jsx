@@ -10,8 +10,8 @@ import "aos/dist/aos.css";
 
 const FoodCard = ({ food }) => {
   const { _id, title, img, category, quantity, expiryDate } = food;
-  food.expiryDate = new Date(expiryDate);
-  const currentDate = new Date();
+  food.expiryDate = new Date(expiryDate).toISOString();
+  const currentDate = new Date().toISOString();
 
   useEffect(() => {
     AOS.init({ duration: 1000 });
@@ -34,7 +34,7 @@ const FoodCard = ({ food }) => {
           />
           <span
             className={`${
-              currentDate > expiryDate ? "block" : "hidden"
+              currentDate >= expiryDate ? "block" : "hidden"
             } badge badge-outline badge-error absolute top-2 right-2`}
           >
             Expired

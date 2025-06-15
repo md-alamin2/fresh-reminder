@@ -3,14 +3,13 @@ import { format } from "date-fns";
 import { MdDeleteForever } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
 import Modal from "../Modal/Modal";
-import axios from "axios";
 import Swal from "sweetalert2";
-import useAuth from "../../Hooks/useAuth";
+import useAxiosSecure from "../../Hooks/UseAxiosSecure";
 
 const MyItemRow = ({ myItem, handleDeleteFood }) => {
   const [items, setItems]= useState(myItem);
   const { _id, title, img, expiryDate, quantity } = items || {};
-  const {user}=useAuth();
+  const axiosSecure= useAxiosSecure();
 
   const handleUpdateFood = (e, id) => {
     e.preventDefault();
@@ -19,12 +18,8 @@ const MyItemRow = ({ myItem, handleDeleteFood }) => {
     const food = Object.fromEntries(formData.entries());
 
     // update food
-    axios
-      .put(`https://ph-assignment-11-server-omega.vercel.app/foods/${id}`, food, {
-        headers:{
-          Authorization:`Bearer ${user.accessToken}`
-        }
-      })
+    axiosSecure
+      .put(`foods/${id}`, food)
       .then((data) => {
         if (data.data.modifiedCount) {
           setItems(food)

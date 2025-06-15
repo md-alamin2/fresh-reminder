@@ -1,18 +1,17 @@
 import React, { use, useEffect, useState } from "react";
 import MyItemRow from "../MyItemRow/MyItemRow";
 import Swal from "sweetalert2";
-import axios from "axios";
 import Lottie from "lottie-react";
 import emptyLottie from "../../assets/Lottis/as-11-emptyState.json";
 import { Link } from "react-router";
 import Modal from "../Modal/Modal";
 import Aos from "aos";
-import useAuth from "../../Hooks/useAuth";
+import useAxiosSecure from "../../Hooks/UseAxiosSecure";
 
 const MyItemList = ({ myItemsPromise }) => {
   const myItems = use(myItemsPromise);
   const [myItemsData, setMyItemsData] = useState(myItems);
-  const {user} = useAuth();
+  const axiosSecure= useAxiosSecure();
 
   useEffect(() => {
     Aos.init({ duration: 1000 });
@@ -31,12 +30,8 @@ const MyItemList = ({ myItemsPromise }) => {
     }).then((result) => {
       if (result.isConfirmed) {
         // delete food
-        axios
-          .delete(`https://ph-assignment-11-server-omega.vercel.app/foods/${id}`,{
-            headers:{
-              Authorization:`Bearer ${user.accessToken}`
-            }
-          })
+        axiosSecure
+          .delete(`https://ph-assignment-11-server-omega.vercel.app/foods/${id}`)
           .then((data) => {
             const remainingFood = myItemsData.filter(
               (myItem) => myItem._id !== id

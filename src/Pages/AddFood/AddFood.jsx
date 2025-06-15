@@ -3,14 +3,14 @@ import Swal from "sweetalert2";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import useAuth from "../../Hooks/useAuth";
-import axios from "axios";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
+import useAxiosSecure from "../../Hooks/UseAxiosSecure";
 
 const AddFood = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
-
+  const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
     AOS.init({ duration: 1000 });
@@ -28,12 +28,9 @@ const AddFood = () => {
     };
 
     // add task to db
-    axios
-      .post("https://ph-assignment-11-server-omega.vercel.app/foods", newFood,{
-        headers: {
-          Authorization: `Bearer ${user.accessToken}`
-        }
-      })
+
+    axiosSecure
+      .post("foods", newFood)
       .then((data) => {
         if (data.data.insertedId) {
           Swal.fire({
@@ -67,7 +64,9 @@ const AddFood = () => {
         <div data-aos="fade-left" className="text-center md:px-18 space-y-8">
           <h1 className="text-4xl md:text-5xl font-bold">Add New Food</h1>
           <p className="text-lg md:text-xl">
-            Fill out the form below to add a new dish to your menu. Include the name, price, category, image, and a brief description to keep your menu fresh and appealing.
+            Fill out the form below to add a new dish to your menu. Include the
+            name, price, category, image, and a brief description to keep your
+            menu fresh and appealing.
           </p>
         </div>
         <form data-aos="fade-right" onSubmit={handleAddFoods} className="mt-8">

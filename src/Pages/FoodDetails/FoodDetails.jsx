@@ -11,6 +11,7 @@ import { MdOutlineDateRange } from "react-icons/md";
 import { SiCodefresh } from "react-icons/si";
 import { motion } from "framer-motion";
 import NoteModal from "../../Components/NoteModal/NoteModal";
+import useAxiosSecure from "../../Hooks/UseAxiosSecure";
 
 const FoodDetails = () => {
   const { user } = useAuth();
@@ -28,8 +29,9 @@ const FoodDetails = () => {
     userEmail,
   } = singleFood || {};
   const [noteData, setNoteData] = useState(singleFood?.noteData);
-  const currentDay = new Date();
-  singleFood.expiryDate = new Date(expiryDate);
+  const currentDay = new Date().toISOString();
+  singleFood.expiryDate = new Date(expiryDate).toISOString();
+  const axiosSecure = useAxiosSecure();
 
   // add note to db
   const handleAddNote = (e) => {
@@ -42,7 +44,7 @@ const FoodDetails = () => {
       note_added_date: new Date(),
     };
     // update note on db
-    axios
+    axiosSecure
       .patch(
         `https://ph-assignment-11-server-omega.vercel.app/foods/${_id}`,
         noteData
@@ -51,7 +53,7 @@ const FoodDetails = () => {
         if (data.data.modifiedCount) {
           setNoteData(noteData);
           form.reset();
-          document.getElementById("my_modal_3").close()
+          document.getElementById("my_modal_3").close();
           Swal.fire({
             title: "Note updated successfully!",
             icon: "success",
@@ -97,7 +99,7 @@ const FoodDetails = () => {
             Status :{" "}
             <span
               className={`badge font-semibold ${
-                currentDay > expiryDate ? "badge-error" : "badge-success"
+                currentDay >= expiryDate ? "badge-error" : "badge-success"
               }`}
             >
               {currentDay > expiryDate ? "Expired" : "Fresh"}
@@ -125,22 +127,23 @@ const FoodDetails = () => {
                 </p>
               </>
             ) : (
-              <h2 className="text-lg font-bold text-center">
-                Note isn't added yet🔍
-              </h2>
+              <h2 className="text-lg font-bold">Note isn't added yet🔍</h2>
             )}
             {/* You can open the modal using document.getElementById('ID').showModal() method */}
             <div className="flex justify-end">
               <button
                 disabled={user.email === userEmail ? false : true}
-                className={`btn bg-[#64b843] ${user.email != userEmail ? "cursor-pointer": "cursor-not-allowed"}`}
+                className="btn bg-[#64b843]"
                 onClick={() =>
                   document.getElementById("my_modal_3").showModal()
                 }
               >
                 Add Note
               </button>
-              <NoteModal userEmail={userEmail} handleAddNote={handleAddNote}></NoteModal>
+              <NoteModal
+                userEmail={userEmail}
+                handleAddNote={handleAddNote}
+              ></NoteModal>
             </div>
           </div>
         </div>
