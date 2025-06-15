@@ -46,7 +46,7 @@ const FoodDetails = () => {
     // update note on db
     axiosSecure
       .patch(
-        `https://ph-assignment-11-server-omega.vercel.app/foods/${_id}`,
+        `foods/${_id}`,
         noteData
       )
       .then((data) => {

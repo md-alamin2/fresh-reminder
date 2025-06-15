@@ -31,7 +31,7 @@ const MyItemList = ({ myItemsPromise }) => {
       if (result.isConfirmed) {
         // delete food
         axiosSecure
-          .delete(`https://ph-assignment-11-server-omega.vercel.app/foods/${id}`)
+          .delete(`foods/${id}`)
           .then((data) => {
             const remainingFood = myItemsData.filter(
               (myItem) => myItem._id !== id

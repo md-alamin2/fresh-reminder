@@ -22,7 +22,7 @@ const MyItemRow = ({ myItem, handleDeleteFood }) => {
       .put(`foods/${id}`, food)
       .then((data) => {
         if (data.data.modifiedCount) {
-          setItems(food)
+          setItems({...food, _id})
           document.getElementById(id).close();
           Swal.fire({
             title: "Food Update successfully!",

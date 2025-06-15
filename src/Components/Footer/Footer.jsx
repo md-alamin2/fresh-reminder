@@ -48,7 +48,7 @@ export default function Footer() {
   );
 
   return (
-    <div className="bg-base-200 text-base-content md:p-10">
+    <div className="bg-base-200 text-base-content py-10 md:px-10">
       <div className="w-11/12 lg:container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-0">
         {/* Logo & Name */}
         <div className="lg:col-span-2">
