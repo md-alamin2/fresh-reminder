@@ -17,15 +17,17 @@ const FAQ = () => {
   return (
     <div className="w-11/12 lg:container mx-auto mt-30 md:px-10 lg:px-40">
       <div>
-        <h2 className="w-full text-center">
-          <BlurText
-            text="Common Questions"
-            delay={500}
-            animateBy="words"
-            direction="Bottom"
-            className="text-4xl md:text-5xl font-bold text-center max-w-[480px] mx-auto"
-          />
-        </h2>
+        <div className="ml-4 md:ml-0">
+          <h2 className="w-full text-center">
+            <BlurText
+              text="Common Questions"
+              delay={500}
+              animateBy="words"
+              direction="Bottom"
+              className="text-4xl md:text-5xl font-bold text-center max-w-[460px] mx-auto"
+            />
+          </h2>
+        </div>
         <p className="text-lg md:text-xl font-thin text-center mt-5 max-w-xl mx-auto">
           Find quick answers to common questions about using our Fresh Reminder
           to manage and reduce your food waste.
