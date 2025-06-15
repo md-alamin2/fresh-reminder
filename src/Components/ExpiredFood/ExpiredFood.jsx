@@ -38,11 +38,7 @@ const ExpiredFood = ({expired}) => {
           </div>
         ) : (
           <div
-            className={`grid grid-cols-1 md:grid-cols-2 ${
-              expired.length == 1 && "lg:grid-cols-1"
-            } ${expired.length == 2 && "lg:grid-cols-2"} ${
-              expired.length >= 3 && "lg:grid-cols-3"
-            } lg:max-w-5/6 mx-auto gap-8 mt-10`}
+            className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:max-w-5/6 mx-auto gap-8 mt-10`}
           >
             {expired.map((food) => (
               <FoodCard key={food._id} food={food}></FoodCard>
