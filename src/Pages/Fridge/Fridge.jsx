@@ -60,6 +60,7 @@ const Fridge = () => {
 
   return (
     <div className="w-11/12 lg:container mx-auto mt-20">
+      <title>FreshReminder-fridge</title>
       <h2 className="text-4xl md:text-5xl font-bold text-center">
         Community Fridge
       </h2>

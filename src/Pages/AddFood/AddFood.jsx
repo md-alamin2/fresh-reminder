@@ -59,7 +59,7 @@ const AddFood = () => {
 
   return (
     <>
-      <title>FreshReminder-Add Task</title>
+      <title>FreshReminder-add-food</title>
       <div className="w-11/12 lg:container mx-auto mt-8  lg:px-28 md:py-17">
         <div data-aos="fade-left" className="text-center md:px-18 space-y-8">
           <h1 className="text-4xl md:text-5xl font-bold">Add New Food</h1>

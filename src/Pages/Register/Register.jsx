@@ -123,7 +123,7 @@ const Register = () => {
 
   return (
     <div>
-      <title>TaskLinker-Register</title>
+      <title>FreshReminder-register</title>
       <div className="w-11/12 lg:container mx-auto flex flex-col md:flex-row md:items-center bg-base-100 mt-2 md:mt-10 md:px-40">
         <div data-aos="fade-right" className="hidden w-[50%] lg:flex justify-center">
           <Lottie animationData={regImg} style={{ width: 500 }}></Lottie>

@@ -67,88 +67,91 @@ const FoodDetails = () => {
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 1 }}
-      className="w-11/12 lg:container mx-auto mt-20"
-    >
-      <CountDown expiryDate={expiryDate}></CountDown>
-      <div className="flex flex-col md:flex-row items-center gap-6 border border-gray-300 p-4 rounded-2xl">
-        <div>
-          <img className="w-96 rounded-lg" src={img} alt="" />
-        </div>
-        <div className="space-y-1">
-          <h2 className="text-xl font-semibold">Name : {title}</h2>
-          <p className="text-lg flex items-center gap-1">
-            <LuTag /> Category : {category}
-          </p>
-          <p className="text-lg flex items-center gap-1">
-            <FaBoxes /> Quantity : {quantity}
-          </p>
-          <p className="text-lg flex items-center gap-1">
-            <MdOutlineDateRange /> Added Date :{" "}
-            {format(new Date(addedDate), "PP")}
-          </p>
-          <p className="text-lg flex items-center gap-1">
-            <MdOutlineDateRange /> Expiry Date :{" "}
-            {format(new Date(expiryDate), "PP")}
-          </p>
-          <p className="text-lg flex items-center gap-1 border-t border-b border-dashed my-2 py-4">
-            <SiCodefresh />
-            Status :{" "}
-            <span
-              className={`badge font-semibold ${
-                currentDay >= expiryDate ? "badge-error" : "badge-success"
-              }`}
-            >
-              {currentDay > expiryDate ? "Expired" : "Fresh"}
-            </span>
-          </p>
-          <p className="text-lg">
-            Description:{" "}
-            <span className="text-sm font-thin">{description}</span>
-          </p>
-        </div>
-      </div>
-      {/* note area */}
-      <div className="mt-8">
-        <h3 className="text-xl font-semibold">Note:</h3>
-        <div className="card max-w-96 bg-base-100 card-xs shadow-sm border border-gray-300 mt-5">
-          <div className="card-body">
-            {noteData ? (
-              <>
-                <p className="text-sm flex items-center gap-1">
-                  <MdOutlineDateRange />
-                  {format(new Date(noteData?.note_added_date), "PP")}
-                </p>
-                <p className="text-base font-thin opacity-70">
-                  {noteData?.note_dec}
-                </p>
-              </>
-            ) : (
-              <h2 className="text-lg font-bold">Note isn't added yet🔍</h2>
-            )}
-            {/* You can open the modal using document.getElementById('ID').showModal() method */}
-            <div className="flex justify-end">
-              <button
-                disabled={user.email === userEmail ? false : true}
-                className="btn bg-[#64b843]"
-                onClick={() =>
-                  document.getElementById("my_modal_3").showModal()
-                }
+    <>
+    <title>FreshReminder-food-details</title>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+        className="w-11/12 lg:container mx-auto mt-20"
+      >
+        <CountDown expiryDate={expiryDate}></CountDown>
+        <div className="flex flex-col md:flex-row items-center gap-6 border border-gray-300 p-4 rounded-2xl">
+          <div>
+            <img className="w-96 rounded-lg" src={img} alt="" />
+          </div>
+          <div className="space-y-1">
+            <h2 className="text-xl font-semibold">Name : {title}</h2>
+            <p className="text-lg flex items-center gap-1">
+              <LuTag /> Category : {category}
+            </p>
+            <p className="text-lg flex items-center gap-1">
+              <FaBoxes /> Quantity : {quantity}
+            </p>
+            <p className="text-lg flex items-center gap-1">
+              <MdOutlineDateRange /> Added Date :{" "}
+              {format(new Date(addedDate), "PP")}
+            </p>
+            <p className="text-lg flex items-center gap-1">
+              <MdOutlineDateRange /> Expiry Date :{" "}
+              {format(new Date(expiryDate), "PP")}
+            </p>
+            <p className="text-lg flex items-center gap-1 border-t border-b border-dashed my-2 py-4">
+              <SiCodefresh />
+              Status :{" "}
+              <span
+                className={`badge font-semibold ${
+                  currentDay >= expiryDate ? "badge-error" : "badge-success"
+                }`}
               >
-                Add Note
-              </button>
-              <NoteModal
-                userEmail={userEmail}
-                handleAddNote={handleAddNote}
-              ></NoteModal>
+                {currentDay > expiryDate ? "Expired" : "Fresh"}
+              </span>
+            </p>
+            <p className="text-lg">
+              Description:{" "}
+              <span className="text-sm font-thin">{description}</span>
+            </p>
+          </div>
+        </div>
+        {/* note area */}
+        <div className="mt-8">
+          <h3 className="text-xl font-semibold">Note:</h3>
+          <div className="card max-w-96 bg-base-100 card-xs shadow-sm border border-gray-300 mt-5">
+            <div className="card-body">
+              {noteData ? (
+                <>
+                  <p className="text-sm flex items-center gap-1">
+                    <MdOutlineDateRange />
+                    {format(new Date(noteData?.note_added_date), "PP")}
+                  </p>
+                  <p className="text-base font-thin opacity-70">
+                    {noteData?.note_dec}
+                  </p>
+                </>
+              ) : (
+                <h2 className="text-lg font-bold">Note isn't added yet🔍</h2>
+              )}
+              {/* You can open the modal using document.getElementById('ID').showModal() method */}
+              <div className="flex justify-end">
+                <button
+                  disabled={user.email === userEmail ? false : true}
+                  className="btn bg-[#64b843]"
+                  onClick={() =>
+                    document.getElementById("my_modal_3").showModal()
+                  }
+                >
+                  Add Note
+                </button>
+                <NoteModal
+                  userEmail={userEmail}
+                  handleAddNote={handleAddNote}
+                ></NoteModal>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </motion.div>
+      </motion.div>
+    </>
   );
 };
 

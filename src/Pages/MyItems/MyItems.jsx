@@ -15,6 +15,7 @@ const MyItems = () => {
       transition={{ duration: 1 }}
       className="w-11/12 lg:container mx-auto mt-20 md:min-h-[calc(100vh-530px)]"
     >
+      <title>FreshReminder-my-items</title>
       <h2 className="text-4xl md:text-5xl font-bold text-center">
         My Added Items
       </h2>

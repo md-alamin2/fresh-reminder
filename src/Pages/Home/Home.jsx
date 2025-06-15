@@ -23,6 +23,7 @@ const Home = () => {
   }, []);
   return (
     <div>
+      <title>FreshReminder-Home</title>
       <Suspense fallback={<Loader></Loader>}>
         <Slider></Slider>
       </Suspense>

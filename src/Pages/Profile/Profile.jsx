@@ -47,6 +47,7 @@ const Profile = () => {
 
   return (
     <div data-aos="fade-right" className="mt-20 md:h-[calc(100vh-455px)]">
+      <title>user-profile</title>
       <div className="border border-gray-300 w-90 mx-auto px-4 py-8 text-center shadow-2xl rounded-lg ">
         <img
           className="w-24 mx-auto rounded-full bg-[#64b843] p-2"
