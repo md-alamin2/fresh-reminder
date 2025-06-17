@@ -5,6 +5,7 @@ import emptyLottie from "../../assets/Lottis/as-11-emptyState.json";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import Aos from "aos";
+import {motion} from "framer-motion"
 
 const ExpiredFood = ({expired}) => {
 
@@ -26,7 +27,9 @@ const ExpiredFood = ({expired}) => {
       </div>
       <div>
         {expired.length <= 0 ? (
-          <div className="text-center space-y-1 mt-5 bg-base-200 py-6 rounded-2xl">
+          <motion.div initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }} className="text-center space-y-1 mt-5 bg-base-200 py-6 rounded-2xl">
             <Lottie
               animationData={emptyLottie}
               style={{ height: 300 }}
@@ -35,7 +38,7 @@ const ExpiredFood = ({expired}) => {
               No expired items found. You're doing a great job managing your
               food!
             </h3>
-          </div>
+          </motion.div>
         ) : (
           <div
             className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:max-w-5/6 mx-auto gap-8 mt-10`}

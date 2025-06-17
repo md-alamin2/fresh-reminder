@@ -19,7 +19,7 @@ const NoteModal = ({userEmail, handleAddNote}) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
-          className="bg-base-200 rounded-2xl p-6 mt-3"
+          className="bg-base-200 rounded-2xl p-3 md:p-6 mt-3"
         >
           <form onSubmit={handleAddNote} className="mt-2">
             <fieldset>

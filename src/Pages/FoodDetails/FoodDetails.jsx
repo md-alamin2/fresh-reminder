@@ -76,7 +76,7 @@ const FoodDetails = () => {
         className="w-11/12 lg:container mx-auto mt-20"
       >
         <CountDown expiryDate={expiryDate}></CountDown>
-        <div className="flex flex-col md:flex-row items-center gap-6 border border-gray-300 p-4 rounded-2xl">
+        <div className="flex flex-col md:flex-row md:items-center gap-6 border border-gray-300 p-4 rounded-2xl">
           <div>
             <img className="w-96 rounded-lg" src={img} alt="" />
           </div>
