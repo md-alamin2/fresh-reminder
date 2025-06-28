@@ -22,7 +22,7 @@ const FoodCard = ({ food }) => {
       <motion.div
         whileHover={{ scale: 1.02 }}
         transition={{ duration: 0.2 }}
-        className="card bg-base-100 border border-gray-300 hover:shadow-xl transition-shadow  hover:duration-200 group"
+        className="card max-w-96 bg-base-100 border border-gray-300 hover:shadow-xl transition-shadow  hover:duration-200 group"
       >
         <figure>
           <motion.img

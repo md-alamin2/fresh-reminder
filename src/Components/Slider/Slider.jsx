@@ -2,7 +2,7 @@ import React, { use } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
-import { Pagination, Autoplay } from "swiper/modules";
+import { Pagination, Autoplay, Navigation } from "swiper/modules";
 import { Link } from "react-router";
 import { motion } from "framer-motion";
 import DecryptedText from "../../../Reactbits/DecryptedText/DecryptedText";
@@ -14,19 +14,20 @@ const Slider = () => {
   const slides = use(sliderPromise);
 
   return (
-    <div className="w-full rounded-lg overflow-hidden shadow-lg relative z-0">
+    <div className="w-11/12 lg:container mx-auto rounded-lg overflow-hidden shadow-lg relative z-0 mt-20">
       <Swiper
-        modules={[Pagination, Autoplay]}
+        modules={[Pagination, Autoplay, Navigation]}
         spaceBetween={0}
         slidesPerView={1}
         loop
         pagination={{ clickable: true }}
+        navigation={true}
         autoplay={{ delay: 4000 }}
       >
         {slides.map((slide, index) => (
           <SwiperSlide key={index}>
             <div
-              className="hero min-h-[calc(100vh-90px)]"
+              className="hero min-h-[calc(100vh-400px)]"
               style={{
                 backgroundImage: `url(${slide.image})`,
               }}

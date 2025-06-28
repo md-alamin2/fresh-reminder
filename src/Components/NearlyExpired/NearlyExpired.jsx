@@ -13,7 +13,9 @@ const NearlyExpired = ({ nearlyExpiredData }) => {
   }, []);
   return (
     <div className="w-11/12 lg:container mx-auto mt-20">
-      <div data-aos="zoom-out" data-aos-duration="2000">
+      <div 
+      // data-aos="zoom-out" data-aos-duration="2000"
+      >
         <h2 className="text-4xl md:text-5xl font-bold text-center">
           Items Expiring Soon
         </h2>
@@ -32,7 +34,7 @@ const NearlyExpired = ({ nearlyExpiredData }) => {
           </div>
         ) : (
           <div
-            className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:max-w-5/6 mx-auto gap-8 mt-10`}
+            className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mx-auto gap-8 mt-10`}
           >
             {nearlyExpiredData.map((food) => (
               <FoodCard key={food._id} food={food}></FoodCard>

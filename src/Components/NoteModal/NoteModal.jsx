@@ -1,9 +1,7 @@
 import React from "react";
-import useAuth from "../../Hooks/useAuth";
 import {motion} from "framer-motion"
 
-const NoteModal = ({userEmail, handleAddNote}) => {
-    const {user}=useAuth()
+const NoteModal = ({ handleAddNote }) => {
   return (
     <div>
       <dialog id="my_modal_3" className="modal">

@@ -21,7 +21,7 @@ const FAQ = () => {
           <h2 className="w-full text-center">
             <BlurText
               text="Common Questions"
-              delay={500}
+              delay={800}
               animateBy="words"
               direction="Bottom"
               className="text-4xl md:text-5xl font-bold text-center max-w-[460px] mx-auto"

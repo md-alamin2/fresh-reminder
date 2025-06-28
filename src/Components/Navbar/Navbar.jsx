@@ -5,6 +5,7 @@ import { Link, NavLink } from "react-router";
 import { MdOutlineLogout } from "react-icons/md";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
+import { Tooltip } from "react-tooltip";
 
 const Navbar = () => {
   const { user, logoutUser } = useAuth();
@@ -150,7 +151,7 @@ const Navbar = () => {
       </div>
       <div className="navbar-end">
         {/* theme controller */}
-        <div>
+        <div id="theme-toggle">
           <label className="toggle text-base-content mr-5">
             <input
               type="checkbox"
@@ -201,6 +202,9 @@ const Navbar = () => {
             </svg>
           </label>
         </div>
+        <Tooltip anchorSelect="#theme-toggle" place="left">
+          Change Theme
+        </Tooltip>
 
         {user ? (
           <div className="flex items-center gap-2">

@@ -14,7 +14,9 @@ const Tips = () => {
   return (
     <div className="mt-20 py-20 bg-base-200">
       <div className="w-11/12 lg:container mx-auto">
-        <div data-aos="zoom-out" data-aos-duration="2000">
+        <div 
+        // data-aos="zoom-out" data-aos-duration="2000"
+        >
           <h2 className="text-4xl md:text-5xl font-bold text-center">
             Food Management Tips
           </h2>
@@ -25,7 +27,7 @@ const Tips = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
           {tipsData.map((tips, index) => (
             <div
-            data-aos="fade-up"
+            // data-aos="fade-up"
               key={index}
               className="bg-base-100 border border-gray-300 p-8 rounded-2xl"
             >

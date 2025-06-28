@@ -1,7 +1,6 @@
 import { format } from "date-fns";
 import React, { useState } from "react";
 import { useLoaderData } from "react-router";
-import axios from "axios";
 import useAuth from "../../Hooks/useAuth";
 import CountDown from "../../Components/CountDown/CountDown";
 import Swal from "sweetalert2";
@@ -45,10 +44,7 @@ const FoodDetails = () => {
     };
     // update note on db
     axiosSecure
-      .patch(
-        `foods/${_id}`,
-        noteData
-      )
+      .patch(`foods/${_id}`, noteData)
       .then((data) => {
         if (data.data.modifiedCount) {
           setNoteData(noteData);
@@ -68,7 +64,7 @@ const FoodDetails = () => {
 
   return (
     <>
-    <title>FreshReminder-food-details</title>
+      <title>FreshReminder-food-details</title>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
