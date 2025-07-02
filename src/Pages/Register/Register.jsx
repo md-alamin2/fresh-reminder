@@ -165,7 +165,7 @@ const Register = () => {
             {/* photo ulr */}
             <label className=" text-xl  font-semibold">PhotoURL</label>
             <input
-              type="text"
+              type="link"
               name="photo"
               required
               className="input w-full"

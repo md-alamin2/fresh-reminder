@@ -43,7 +43,7 @@ const AddFood = () => {
         }
         form.reset();
         setLoading(false);
-        navigate("/my-items");
+        navigate("/dashboard/my-items");
       })
       .catch((error) => {
         setLoading(false);
@@ -64,10 +64,10 @@ const AddFood = () => {
   return (
     <>
       <title>FreshReminder-add-food</title>
-      <div className="w-11/12 lg:container mx-auto mt-8  lg:px-28 md:py-17">
-        <div data-aos="fade-left" className="text-center md:px-18 space-y-8">
+      <div className="w-11/12 lg:container mx-auto my-8  lg:px-28 md:py-17 overflow-hidden">
+        <div data-aos="fade-left" className="text-center space-y-8">
           <h1 className="text-4xl md:text-5xl font-bold">Add New Food</h1>
-          <p className="text-lg md:text-xl">
+          <p className="text-lg md:text-xl max-w-3xl mx-auto">
             Fill out the form below to add a new dish to your menu. Include the
             name, price, category, image, and a brief description to keep your
             menu fresh and appealing.

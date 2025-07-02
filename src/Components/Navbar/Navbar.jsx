@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import logo from "../../assets/imgs/as-11-logo.png";
 import useAuth from "../../Hooks/useAuth";
 import { Link, NavLink } from "react-router";
 import { MdOutlineLogout } from "react-icons/md";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 import { Tooltip } from "react-tooltip";
+import Logo from "../Logo/Logo";
+import userImg from "../../assets/imgs/user.png"
 
 const Navbar = () => {
   const { user, logoutUser } = useAuth();
@@ -41,18 +42,10 @@ const Navbar = () => {
         <>
           <li>
             <NavLink
-              to="/add-food"
+              to="/dashboard"
               className={({ isActive }) => (isActive ? active : "font-medium")}
             >
-              Add Food
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/my-items"
-              className={({ isActive }) => (isActive ? active : "font-medium")}
-            >
-              My Items
+              Dashboard
             </NavLink>
           </li>
         </>
@@ -143,9 +136,7 @@ const Navbar = () => {
             {links}
           </ul>
         </div>
-        <Link to="/" className=" flex items-center gap-2 md:text-2xl font-bold">
-          <img className="w-10 md:w-14" src={logo} alt="logo" /> FreshReminder
-        </Link>
+        <Logo></Logo>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal gap-2 px-1">{links}</ul>
@@ -213,7 +204,7 @@ const Navbar = () => {
               <img
                 tabIndex={0}
                 className="w-14 bg-[#64b843] p-1 rounded-full cursor-pointer"
-                src={`${user.photoURL}`}
+                src={user.photoURL? user.photoURL : userImg}
                 alt="user"
               />
               <ul
@@ -233,6 +224,16 @@ const Navbar = () => {
                   >
                     Logout <MdOutlineLogout size={20} />
                   </button>
+                </li>
+                <li>
+                  <NavLink
+                    to="/dashboard"
+                    className={({ isActive }) =>
+                      isActive ? active : "font-medium"
+                    }
+                  >
+                    Dashboard
+                  </NavLink>
                 </li>
               </ul>
             </div>

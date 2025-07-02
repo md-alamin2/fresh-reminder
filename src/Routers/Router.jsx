@@ -12,6 +12,8 @@ import PrivateRoutes from "./PrivateRoute";
 import FoodDetails from "../Pages/FoodDetails/FoodDetails";
 import Profile from "../Pages/Profile/Profile";
 import About from "../Pages/About/About";
+import DashboardHome from "../Pages/DashboardHome/DashboardHome";
+import Dashboard from "../Layout/Dashboard";
 
 export const router = createBrowserRouter([
   {
@@ -21,13 +23,17 @@ export const router = createBrowserRouter([
       {
         index: true,
         Component: Home,
-        loader:()=>fetch("https://ph-assignment-11-server-omega.vercel.app/food/expiring-soon")
+        loader: () =>
+          fetch(
+            "https://ph-assignment-11-server-omega.vercel.app/food/expiring-soon"
+          ),
       },
       {
         path: "/fridge",
         Component: Fridge,
-        loader:()=>fetch("https://ph-assignment-11-server-omega.vercel.app/foods"),
-        hydrateFallbackElement:<Loader></Loader>
+        loader: () =>
+          fetch("https://ph-assignment-11-server-omega.vercel.app/foods"),
+        hydrateFallbackElement: <Loader></Loader>,
       },
       {
         path: "/about",
@@ -35,21 +41,40 @@ export const router = createBrowserRouter([
       },
       {
         path: "/add-food",
-        element: <PrivateRoutes><AddFood></AddFood></PrivateRoutes>,
+        element: (
+          <PrivateRoutes>
+            <AddFood></AddFood>
+          </PrivateRoutes>
+        ),
       },
       {
-        path:"/food-details/:id",
-        element:<PrivateRoutes><FoodDetails></FoodDetails></PrivateRoutes>,
-        loader:({params})=>fetch(`https://ph-assignment-11-server-omega.vercel.app/foods/${params.id}`),
-        hydrateFallbackElement:<Loader></Loader>
+        path: "/food-details/:id",
+        element: (
+          <PrivateRoutes>
+            <FoodDetails></FoodDetails>
+          </PrivateRoutes>
+        ),
+        loader: ({ params }) =>
+          fetch(
+            `https://ph-assignment-11-server-omega.vercel.app/foods/${params.id}`
+          ),
+        hydrateFallbackElement: <Loader></Loader>,
       },
       {
         path: "/my-items",
-        element: <PrivateRoutes><MyItems></MyItems></PrivateRoutes>,
+        element: (
+          <PrivateRoutes>
+            <MyItems></MyItems>
+          </PrivateRoutes>
+        ),
       },
       {
-        path:"/user-profile",
-        element:<PrivateRoutes><Profile></Profile></PrivateRoutes>
+        path: "/user-profile",
+        element: (
+          <PrivateRoutes>
+            <Profile></Profile>
+          </PrivateRoutes>
+        ),
       },
       {
         path: "/login",
@@ -59,7 +84,42 @@ export const router = createBrowserRouter([
         path: "/register",
         Component: Register,
       },
+      
     ],
     errorElement: <ErrorPage></ErrorPage>,
   },
+  {
+        path: "/dashboard",
+        element: (
+          <PrivateRoutes>
+            <Dashboard></Dashboard>
+          </PrivateRoutes>
+        ),
+        children: [
+          {
+            index: true,
+            element: (
+              <PrivateRoutes>
+                <DashboardHome></DashboardHome>
+              </PrivateRoutes>
+            ),
+          },
+          {
+            path: "/dashboard/add-food",
+            element: (
+              <PrivateRoutes>
+                <AddFood></AddFood>
+              </PrivateRoutes>
+            ),
+          },
+          {
+            path: "/dashboard/my-items",
+            element: (
+              <PrivateRoutes>
+                <MyItems></MyItems>
+              </PrivateRoutes>
+            )
+          },
+        ],
+      },
 ]);
