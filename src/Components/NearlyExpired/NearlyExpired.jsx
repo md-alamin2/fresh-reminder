@@ -4,18 +4,31 @@ import { Link } from "react-router";
 import boxLottie from "../../assets/Lottis/as-11-box.json";
 import Lottie from "lottie-react";
 import { FaArrowRight } from "react-icons/fa";
-import AOS from "aos";
-import "aos/dist/aos.css";
+import { motion } from "framer-motion";
+
+const containerVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      staggerChildren: 0.3,
+      ease: "easeOut",
+      duration: 0.3,
+    },
+  },
+};
 
 const NearlyExpired = ({ nearlyExpiredData }) => {
-  useEffect(() => {
-    AOS.init({ duration: 1000 });
-  }, []);
   return (
-    <div className="w-11/12 lg:container mx-auto mt-20">
-      <div 
-      // data-aos="zoom-out" data-aos-duration="2000"
-      >
+    <motion.div
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{once:true}}
+      className="w-11/12 lg:container mx-auto mt-20"
+    >
+      <div>
         <h2 className="text-4xl md:text-5xl font-bold text-center">
           Items Expiring Soon
         </h2>
@@ -47,7 +60,7 @@ const NearlyExpired = ({ nearlyExpiredData }) => {
           Explore more <FaArrowRight />
         </button>
       </Link>
-    </div>
+    </motion.div>
   );
 };
 

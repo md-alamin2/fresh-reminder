@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../Components/Navbar/Navbar";
 import { Outlet, useNavigation } from "react-router";
 import Footer from "../Components/Footer/Footer";
@@ -7,6 +7,13 @@ import ScrollToTop from "../Components/ScrollToTop/ScrollToTop";
 
 const Root = () => {
   const navigation = useNavigation();
+  const [loading, setLoading]=useState(true);
+
+  useEffect(()=>{
+    setTimeout(()=>{
+      1000, setLoading(false)
+    })
+  },[])
   return (
     <>
       <div className="relative">
@@ -14,9 +21,8 @@ const Root = () => {
           <Navbar></Navbar>
         </header>
         <main>
-          {navigation.state === "loading" ? (
+          {navigation.state === "loading" || loading ? (
             <>
-              <ScrollToTop></ScrollToTop>
               <Loader></Loader>
             </>
           ) : (

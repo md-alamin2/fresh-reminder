@@ -5,21 +5,28 @@ import { FaBoxes } from "react-icons/fa";
 import { LuTag } from "react-icons/lu";
 import { Link } from "react-router";
 import { format } from "date-fns";
-import AOS from "aos";
-import "aos/dist/aos.css";
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      ease: "easeOut",
+      duration: 0.3,
+    },
+  },
+};
 
 const FoodCard = ({ food }) => {
   const { _id, title, img, category, quantity, expiryDate } = food;
   food.expiryDate = new Date(expiryDate).toISOString();
   const currentDate = new Date().toISOString();
 
-  useEffect(() => {
-    AOS.init({ duration: 1000 });
-  }, []);
-
   return (
-    <div data-aos="fade-up">
+    <div>
       <motion.div
+      variants={itemVariants}
         whileHover={{ scale: 1.02 }}
         transition={{ duration: 0.2 }}
         className="card max-w-96 bg-base-100 border border-gray-300 hover:shadow-xl transition-shadow  hover:duration-200 group"

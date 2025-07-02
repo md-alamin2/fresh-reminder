@@ -9,15 +9,14 @@ import { Tooltip } from "react-tooltip";
 
 const Navbar = () => {
   const { user, logoutUser } = useAuth();
+  const active = "font-semibold bg-[#64b843] text-white";
 
   const links = (
     <>
       <li>
         <NavLink
           to="/"
-          className={({ isActive }) =>
-            isActive ? "font-semibold bg-[#64b843]" : "font-medium"
-          }
+          className={({ isActive }) => (isActive ? active : "font-medium")}
         >
           Home
         </NavLink>
@@ -25,11 +24,17 @@ const Navbar = () => {
       <li>
         <NavLink
           to="/fridge"
-          className={({ isActive }) =>
-            isActive ? "font-semibold bg-[#64b843]" : "font-medium"
-          }
+          className={({ isActive }) => (isActive ? active : "font-medium")}
         >
           Fridge
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/About"
+          className={({ isActive }) => (isActive ? active : "font-medium")}
+        >
+          About
         </NavLink>
       </li>
       {user && (
@@ -37,9 +42,7 @@ const Navbar = () => {
           <li>
             <NavLink
               to="/add-food"
-              className={({ isActive }) =>
-                isActive ? "font-semibold bg-[#64b843]" : "font-medium"
-              }
+              className={({ isActive }) => (isActive ? active : "font-medium")}
             >
               Add Food
             </NavLink>
@@ -47,9 +50,7 @@ const Navbar = () => {
           <li>
             <NavLink
               to="/my-items"
-              className={({ isActive }) =>
-                isActive ? "font-semibold bg-[#64b843]" : "font-medium"
-              }
+              className={({ isActive }) => (isActive ? active : "font-medium")}
             >
               My Items
             </NavLink>

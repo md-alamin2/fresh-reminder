@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import Lottie from "lottie-react";
 import emptyLottie from "../../assets/Lottis/as-11-emptyState.json";
 import { Link } from "react-router";
+import {easeIn, easeOut, motion} from "framer-motion"
 import Modal from "../Modal/Modal";
 import Aos from "aos";
 import useAxiosSecure from "../../Hooks/UseAxiosSecure";
@@ -54,7 +55,7 @@ const MyItemList = ({ myItemsPromise }) => {
 
   if (myItemsData.length <= 0) {
     return (
-      <div data-aos="zoom-out" className="flex justify-center mt-5">
+      <motion.div initial={{opacity:0, scale:1.2}} whileInView={{opacity:1, scale:1}} transition={{duration:0.8, ease:easeIn}} className="flex justify-center mt-5">
         <div className="text-center space-y-4">
           <Lottie animationData={emptyLottie} style={{ height: 300 }}></Lottie>
           <h3 className="text-3xl font-bold">
@@ -64,7 +65,7 @@ const MyItemList = ({ myItemsPromise }) => {
             Add Food
           </Link>
         </div>
-      </div>
+      </motion.div>
     );
   }
 

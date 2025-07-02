@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -11,6 +11,7 @@ const AddFood = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
   const axiosSecure = useAxiosSecure();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     AOS.init({ duration: 1000 });
@@ -18,6 +19,7 @@ const AddFood = () => {
 
   const handleAddFoods = (e) => {
     e.preventDefault();
+    setLoading(true);
     const form = e.target;
     const formData = new FormData(form);
     const food = Object.fromEntries(formData.entries());
@@ -40,9 +42,11 @@ const AddFood = () => {
           });
         }
         form.reset();
+        setLoading(false);
         navigate("/my-items");
       })
       .catch((error) => {
+        setLoading(false);
         const errorMessage = error.status;
         toast.error(`Login failed ${errorMessage}`, {
           position: "top-right",
@@ -150,11 +154,13 @@ const AddFood = () => {
             ></textarea>
           </fieldset>
 
-          <input
-            type="submit"
-            value="Add Food"
-            className="btn w-full bg-[#64b843]"
-          />
+          <button type="submit" className="btn w-full bg-[#64b843]">
+            {loading ? (
+              <span className="loading loading-dots loading-xl"></span>
+            ) : (
+              "Add Food"
+            )}
+          </button>
         </form>
       </div>
     </>

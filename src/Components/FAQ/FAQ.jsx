@@ -15,7 +15,7 @@ const FAQ = () => {
     Aos.init({ duration: 1000 });
   }, []);
   return (
-    <div className="w-11/12 lg:container mx-auto mt-30 md:px-10 lg:px-40">
+    <div className="w-11/12 lg:container mx-auto mt-20 md:px-10 lg:px-40">
       <div>
         <div className="ml-4 md:ml-0">
           <h2 className="w-full text-center">

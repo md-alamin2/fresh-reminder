@@ -5,6 +5,7 @@ import { FaEdit } from "react-icons/fa";
 import Modal from "../Modal/Modal";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../Hooks/UseAxiosSecure";
+import { motion } from "framer-motion";
 
 const MyItemRow = ({ myItem, handleDeleteFood }) => {
   const [items, setItems]= useState(myItem);

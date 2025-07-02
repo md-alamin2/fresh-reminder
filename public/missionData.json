@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "icon": "FaHeart",
+    "title": "Community Impact",
+    "description": "Building sustainable communities through shared responsibility",
+    "color": "text-red-500"
+  },
+  {
+    "id": 2,
+    "icon": "FaLightbulb",
+    "title": "Smart Solutions",
+    "description": "Leveraging AI and data to prevent food waste",
+    "color": "text-yellow-500"
+  },
+  {
+    "id": 3,
+    "icon": "FaMedal",
+    "title": "Proven Results",
+    "description": "Measurable impact on waste reduction and savings",
+    "color": "text-green-500"
+  },
+  {
+    "id": 4,
+    "icon": "FaGlobe",
+    "title": "Global Vision",
+    "description": "Working towards a sustainable future for all",
+    "color": "text-blue-500"
+  }
+]

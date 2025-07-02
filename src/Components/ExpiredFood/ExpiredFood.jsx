@@ -1,24 +1,32 @@
-import React, { useEffect} from "react";
+import React, { useEffect } from "react";
 import FoodCard from "../FoodCard/FoodCard";
 import Lottie from "lottie-react";
 import emptyLottie from "../../assets/Lottis/as-11-emptyState.json";
-import AOS from "aos";
-import "aos/dist/aos.css";
-import Aos from "aos";
-import {motion} from "framer-motion"
+import { motion } from "framer-motion";
 
-const ExpiredFood = ({expired}) => {
+const containerVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      staggerChildren: 0.3,
+      ease: "easeOut",
+      duration: 0.3,
+    },
+  },
+};
 
-  useEffect(() => {
-
-      Aos.init({duration:1000})
-  }, []);
-
+const ExpiredFood = ({ expired }) => {
   return (
-    <div className="w-11/12 lg:container mx-auto mt-20">
-      <div 
-      // data-aos="zoom-out" data-aos-duration="2000"
-      >
+    <motion.div
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+      className="w-11/12 lg:container mx-auto mt-20"
+    >
+      <div>
         <h2 className="text-4xl md:text-5xl font-bold text-center">
           Expired Food
         </h2>
@@ -29,9 +37,12 @@ const ExpiredFood = ({expired}) => {
       </div>
       <div>
         {expired.length <= 0 ? (
-          <motion.div initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }} className="text-center space-y-1 mt-5 bg-base-200 py-6 rounded-2xl">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+            className="text-center space-y-1 mt-5 bg-base-200 py-6 rounded-2xl"
+          >
             <Lottie
               animationData={emptyLottie}
               style={{ height: 300 }}
@@ -51,7 +62,7 @@ const ExpiredFood = ({expired}) => {
           </div>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 };
 

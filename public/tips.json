@@ -1,7 +1,7 @@
 [
   {
     "title": "Meal Planning",
-    "icon": "https://i.ibb.co/JFqySS72/hat.png",
+    "icon": "https://i.ibb.co/83nLJQ8/icons8-chef-hat-100.png",
     "description": "Plan your meals around expiring items to maximize freshness and minimize waste.",
     "proTip": "Check your nearly expired items every morning and plan your day’s meals accordingly."
   },
@@ -13,7 +13,7 @@
   },
   {
     "title": "Share with Community",
-    "icon": "https://i.ibb.co/39rTHMhD/share.png",
+    "icon": "https://i.ibb.co/C5JVKHt8/icons8-queue-100.png",
     "description": "Consider sharing excess food with neighbors or local food banks.",
     "proTip": "Build connections while reducing waste by sharing food that you can’t consume in time."
   }

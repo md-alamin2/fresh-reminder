@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "icon": "FaUsers",
+    "value": 10000,
+    "label": "Active Users",
+    "color": "text-blue-500"
+  },
+  {
+    "id": 2,
+    "icon": "FaLeaf",
+    "value": 50000,
+    "label": "Food Items Saved",
+    "color": "text-green-600"
+  },
+  {
+    "id": 3,
+    "icon": "FaGlobe",
+    "value": 125,
+    "label": "CO₂ Reduced",
+    "color": "text-purple-600"
+  },
+  {
+    "id": 4,
+    "icon": "FaChartLine",
+    "value": 250000,
+    "label": "Money Saved",
+    "color": "text-orange-500"
+  }
+]

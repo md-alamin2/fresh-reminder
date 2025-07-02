@@ -11,6 +11,7 @@ import Loader from "../Components/Laoder/Loader";
 import PrivateRoutes from "./PrivateRoute";
 import FoodDetails from "../Pages/FoodDetails/FoodDetails";
 import Profile from "../Pages/Profile/Profile";
+import About from "../Pages/About/About";
 
 export const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ export const router = createBrowserRouter([
         Component: Fridge,
         loader:()=>fetch("https://ph-assignment-11-server-omega.vercel.app/foods"),
         hydrateFallbackElement:<Loader></Loader>
+      },
+      {
+        path: "/about",
+        Component: About,
       },
       {
         path: "/add-food",
