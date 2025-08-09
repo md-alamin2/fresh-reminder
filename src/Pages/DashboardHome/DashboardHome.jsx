@@ -217,7 +217,7 @@ const DashboardStats = () => {
                   <CountUp start={0} end={myItems.length} duration={1.5} />
                 </h3>
                 <p className="text-sm font-semibold">My Added Items</p>
-                <div className="flex items-center text-xs mt-2 text-gray-700">
+                <div className="flex items-center text-xs mt-5 text-gray-700">
                   View My Items <FaArrowRight className="ml-1" />
                 </div>
               </div>
@@ -250,7 +250,7 @@ const DashboardStats = () => {
                 <p className="text-sm font-semibold">Expired Items</p>
               </div>
               {expired.length > 0 ||
-                (myExpiredItems.length > 0 && (
+                myExpiredItems.length > 0 ? (
                   <div className="w-full bg-red-200 rounded-full h-2 mt-2">
                     <div
                       className="bg-red-500 h-2 rounded-full"
@@ -264,7 +264,7 @@ const DashboardStats = () => {
                       }}
                     ></div>
                   </div>
-                ))}
+                ): ""}
             </motion.div>
 
             {/* Expiring Soon */}

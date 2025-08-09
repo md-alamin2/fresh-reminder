@@ -82,6 +82,13 @@ const Dashboard = () => {
                 My Items
               </NavLink>
             </li>
+            {user.email === "alamin@gmail.com" && (
+              <li>
+                <NavLink to="/dashboard/all-foods" className="font-semibold">
+                  All Foods
+                </NavLink>
+              </li>
+            )}
           </ul>
         </div>
       </div>

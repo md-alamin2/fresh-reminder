@@ -14,6 +14,7 @@ import Profile from "../Pages/Profile/Profile";
 import About from "../Pages/About/About";
 import DashboardHome from "../Pages/DashboardHome/DashboardHome";
 import Dashboard from "../Layout/Dashboard";
+import AllFoods from "../Pages/AllFoods/AllFoods";
 
 export const router = createBrowserRouter([
   {
@@ -40,14 +41,6 @@ export const router = createBrowserRouter([
         Component: About,
       },
       {
-        path: "/add-food",
-        element: (
-          <PrivateRoutes>
-            <AddFood></AddFood>
-          </PrivateRoutes>
-        ),
-      },
-      {
         path: "/food-details/:id",
         element: (
           <PrivateRoutes>
@@ -59,14 +52,6 @@ export const router = createBrowserRouter([
             `https://ph-assignment-11-server-omega.vercel.app/foods/${params.id}`
           ),
         hydrateFallbackElement: <Loader></Loader>,
-      },
-      {
-        path: "/my-items",
-        element: (
-          <PrivateRoutes>
-            <MyItems></MyItems>
-          </PrivateRoutes>
-        ),
       },
       {
         path: "/login",
@@ -116,6 +101,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoutes>
             <MyItems></MyItems>
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "/dashboard/all-foods",
+        element: (
+          <PrivateRoutes>
+            <AllFoods></AllFoods>
           </PrivateRoutes>
         ),
       },
