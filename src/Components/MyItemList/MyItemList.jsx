@@ -77,6 +77,7 @@ const MyItemList = ({ myItemsPromise }) => {
           <tr className="text-center">
             <th className="md:text-start">Food</th>
             <th>Quantity</th>
+            <th>Status</th>
             <th>Expiry Date</th>
             <th>Action</th>
           </tr>

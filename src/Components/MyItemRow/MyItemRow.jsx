@@ -9,7 +9,8 @@ import { motion } from "framer-motion";
 
 const MyItemRow = ({ myItem, handleDeleteFood }) => {
   const [items, setItems]= useState(myItem);
-  const { _id, title, img, expiryDate, quantity } = items || {};
+  const { _id, title, img, expiryDate, quantity} = items || {};
+  const status = expiryDate > new Date()? "Fresh": "Expired"
   const axiosSecure= useAxiosSecure();
 
   const handleUpdateFood = (e, id) => {
@@ -45,6 +46,9 @@ const MyItemRow = ({ myItem, handleDeleteFood }) => {
       </td>
       <td>
         <p className="font-bold">{quantity}</p>
+      </td>
+      <td>
+        <p className={`badge ${status==="Fresh"? "badge-success":"badge-error"}`}>{status}</p>
       </td>
       <td>
         <p className="font-bold">{format(new Date(expiryDate), "P")}</p>
