@@ -1,12 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { NavLink, Outlet, useNavigation } from "react-router";
+import { NavLink, Outlet, useLocation, useNavigation } from "react-router";
 import Logo from "../Components/Logo/Logo";
 import Loader from "../Components/Laoder/Loader";
 import useAuth from "../Hooks/useAuth";
+import {
+  FaTachometerAlt,
+  FaUser,
+  FaPlus,
+  FaUtensils,
+  FaList,
+} from "react-icons/fa";
 
 const Dashboard = () => {
   const navigation = useNavigation();
   const { user } = useAuth();
+  const active = "font-semibold bg-primary text-white flex items-center gap-2";
+  const location = useLocation();
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
   // Load theme from localStorage on component mount
   useEffect(() => {
@@ -63,29 +72,69 @@ const Dashboard = () => {
             {/* Sidebar content here */}
             <Logo></Logo>
             <li className="mt-5">
-              <NavLink to="/dashboard" className="font-semibold">
-                Dashboard
-              </NavLink>
-            </li>
-            <li className="">
-              <NavLink to="/dashboard/my-profile" className="font-semibold">
-                My Profile
+              <NavLink
+                to="/dashboard"
+                className=
+                {({ isActive }) =>
+                  isActive && location.pathname === "/dashboard"
+                    ? active
+                    : "font-medium flex items-center gap-2"
+                }
+              >
+                <FaTachometerAlt /> Dashboard
               </NavLink>
             </li>
             <li>
-              <NavLink to="/dashboard/add-food" className="font-semibold">
-                Add Food
+              <NavLink
+                to="/dashboard/my-profile"
+                className=
+                {({ isActive }) =>
+                  isActive
+                    ? active
+                    : "font-medium flex items-center gap-2"
+                }
+              >
+                <FaUser /> My Profile
               </NavLink>
             </li>
             <li>
-              <NavLink to="/dashboard/my-items" className="font-semibold">
-                My Items
+              <NavLink
+                to="/dashboard/add-food"
+                className=
+                {({ isActive }) =>
+                  isActive
+                    ? active
+                    : "font-medium flex items-center gap-2"
+                }
+              >
+                <FaPlus /> Add Food
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/dashboard/my-items"
+                className=
+                {({ isActive }) =>
+                  isActive
+                    ? active
+                    : "font-medium flex items-center gap-2"
+                }
+              >
+                <FaUtensils /> My Items
               </NavLink>
             </li>
             {user.email === "alamin@gmail.com" && (
               <li>
-                <NavLink to="/dashboard/all-foods" className="font-semibold">
-                  All Foods
+                <NavLink
+                  to="/dashboard/all-foods"
+                  className=
+                {({ isActive }) =>
+                  isActive
+                    ? active
+                    : "font-medium flex items-center gap-2"
+                }
+                >
+                  <FaList /> All Foods
                 </NavLink>
               </li>
             )}
