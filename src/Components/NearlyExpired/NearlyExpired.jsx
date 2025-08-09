@@ -49,7 +49,7 @@ const NearlyExpired = ({ nearlyExpiredData }) => {
           <div
             className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mx-auto gap-8 mt-10`}
           >
-            {nearlyExpiredData.map((food) => (
+            {nearlyExpiredData.slice(0, 8).map((food) => (
               <FoodCard key={food._id} food={food}></FoodCard>
             ))}
           </div>

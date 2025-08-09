@@ -56,7 +56,7 @@ const ExpiredFood = ({ expired }) => {
           <div
             className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mx-auto gap-8 mt-10`}
           >
-            {expired.map((food) => (
+            {expired.slice(0, 8).map((food) => (
               <FoodCard key={food._id} food={food}></FoodCard>
             ))}
           </div>

@@ -13,7 +13,7 @@ const MyItems = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
-      className="w-11/12 lg:container mx-auto mt-20 md:min-h-[calc(100vh-530px)]"
+      className="w-11/12 lg:container mx-auto my-20 md:min-h-[calc(100vh-530px)]"
     >
       <title>FreshReminder-my-items</title>
       <h2 className="text-4xl md:text-5xl font-bold text-center">

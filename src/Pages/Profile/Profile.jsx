@@ -1,83 +1,390 @@
-import React, { useEffect } from "react";
+import React, { useRef, useState } from "react";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
-import "aos/dist/aos.css";
-import Aos from "aos";
-import { FaEdit } from "react-icons/fa";
 import ProfileEditModal from "../../Components/ProfileEditModal/ProfileEditModal";
-import userImg from "../../assets/imgs/user.png";
 import { motion } from "framer-motion";
+import { useForm } from "react-hook-form";
+import axios from "axios";
+import {
+  FaArrowRight,
+  FaEnvelope,
+  FaCalendarAlt,
+  FaSignOutAlt,
+  FaCamera,
+  FaEdit,
+  FaUser,
+  FaPlus,
+} from "react-icons/fa";
+import { Link } from "react-router";
 
 const Profile = () => {
-  const { user, updateUser, setUser, setLoading } = useAuth();
+  const { user, updateUser, setUser, setLoading, logoutUser } = useAuth();
+  
+  const [isEditing, setIsEditing] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [imagePreview, setImagePreview] = useState(user?.photoURL || "");
+  const fileInputRef = useRef(null);
 
-  const handleProfile = (e) => {
-    e.preventDefault();
-    const name = e.target.name.value;
-    const photo = e.target.photo.value;
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+    reset,
+  } = useForm({
+    defaultValues: {
+      displayName: user?.displayName || "",
+      email: user?.email || "",
+    },
+  });
 
-    updateUser({ displayName: name, photoURL: photo })
-      .then(() => {
-        setUser({ ...user, displayName: name, photoURL: photo });
-        Swal.fire({
-          title: "Profile Update successfully!",
-          icon: "success",
-          timer: 2000,
-        });
-        setLoading(false);
-        document.getElementById("profile_Modal").close();
-      })
-      .catch((error) => {
-        setUser(user);
-        toast.error(`${error.message}`, {
-          position: "top-right",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: false,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
-      });
+    const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    // Create preview
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setImagePreview(reader.result);
+    };
+    reader.readAsDataURL(file);
+
+    setSelectedImage(file);
   };
 
-  useEffect(() => {
-    Aos.init({ duration: 1000 });
-  }, []);
+  const uploadImageToImgBB = async (imageFile) => {
+    const formData = new FormData();
+    formData.append("image", imageFile);
+
+    try {
+      const { data } = await axios.post(
+        `https://api.imgbb.com/1/upload?key=${
+          import.meta.env.VITE_IMGBB_API_KEY
+        }`,
+        formData
+      );
+      const imgUrl = data.data.display_url;
+      return imgUrl;
+    } catch (error) {
+      toast.error("Image upload failed:", error);
+      throw error;
+    }
+  };
+
+  const onSubmit = async (data) => {
+    setIsUploading(true);
+    try {
+      let imageUrl = imagePreview;
+
+      // Only upload if new image was selected
+      if (selectedImage) {
+        imageUrl = await uploadImageToImgBB(selectedImage);
+      }
+
+      // Update both name and image in your database
+      updateUser({
+        displayName: data.displayName,
+        photoURL: imageUrl,
+      })
+        .then(() => {
+          setUser({
+            ...user,
+            displayName: data.displayName,
+            photoURL: imageUrl,
+          });
+          Swal.fire({
+            title: "Profile Updated!",
+            text: "Your profile has been updated successfully.",
+            icon: "success",
+            timer: 2000,
+          });
+          reset();
+          setIsEditing(false);
+          setSelectedImage(null); // Reset selected image after save
+          setIsUploading(false);
+          setLoading(false);
+        })
+        .catch((error) => {
+          setUser(user);
+          toast.error(`${error.message}`, {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+        });
+    } catch (error) {
+      setIsUploading(false);
+      toast.error("Failed to update profile");
+      console.error("Update error:", error);
+    }
+  };
+
+  // logout
+  const handleLogout = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You want to logout!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Logout!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        logoutUser()
+          .then(() => {
+            Swal.fire({
+              title: "Logout!",
+              text: "User logout successfully",
+              icon: "success",
+            });
+          })
+          .catch((error) => {
+            const errorMessage = error.code;
+            toast.error(`Login failed ${errorMessage}`, {
+              position: "top-right",
+              autoClose: 3000,
+              hideProgressBar: false,
+              closeOnClick: false,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
+          });
+      }
+    });
+  };
 
   return (
-    <motion.div initial={{opacity:0}} whileInView={{opacity:1}} transition={{duration:0.4}} className="mt-20 md:h-[calc(100vh-455px)]">
-      <title>user-profile</title>
-      <div className="border border-gray-300 max-w-200 mx-auto px-4 py-8 text-center shadow-xl rounded-lg ">
-        <div
-          className="h-32  rounded-lg"
-          style={{
-            backgroundImage:
-              "url(https://img.daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.webp)",
-          }}
+    <motion.div
+          className="container mx-auto p-6"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
         >
-        </div>
-         <img
-            className="w-22 mx-auto -mt-14 rounded-full"
-            src={user.photoURL || userImg}
-            alt=""
-          />
-        <h3 className="text-2xl font-bold mt-5">Name: {user.displayName}</h3>
-        <p className="text-lg font-medium">Email: {user.email}</p>
-        <button
-          onClick={() => document.getElementById("profile_Modal").showModal()}
-          className="btn bg-[#64b843] mt-5"
-        >
-          Update-profile <FaEdit size={20} />
-        </button>
-        <ProfileEditModal
-          user={user}
-          handleProfile={handleProfile}
-        ></ProfileEditModal>
-      </div>
-    </motion.div>
+          <title>My Profile</title>
+          <div className="bg-base-100 rounded-lg shadow-md overflow-hidden">
+            {/* Profile Header */}
+            <div className="bg-gradient-to-r from-primary to-secondary p-6 text-white">
+              <div className="flex items-center justify-between">
+                <h1 className="text-2xl font-bold">My Profile</h1>
+                {!isEditing ? (
+                  <button
+                    onClick={() => setIsEditing(true)}
+                    className="btn btn-sm btn-primary text-white flex items-center gap-1"
+                  >
+                    <FaEdit />
+                    Edit Profile
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => {
+                      setIsEditing(false);
+                      reset();
+                      setImagePreview(user?.photoURL || "");
+                      setSelectedImage(null);
+                    }}
+                    className="btn btn-sm btn-outline btn-error"
+                  >
+                    Cancel
+                  </button>
+                )}
+              </div>
+            </div>
+
+            {/* Profile Content */}
+            <div className="p-6">
+              {isEditing ? (
+                <motion.form
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.5 }}
+                  onSubmit={handleSubmit(onSubmit)}
+                  className="space-y-4"
+                >
+                  <div className="flex flex-col md:flex-row gap-6">
+                    {/* Avatar Section */}
+                    <div className="flex flex-col items-center">
+                      <div className="avatar mb-4 relative">
+                        <div className="w-32 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                          <img
+                            src={imagePreview || "/default-avatar.jpg"}
+                            alt="Profile Preview"
+                          />
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => fileInputRef.current.click()}
+                          className="absolute bottom-0 right-0 btn btn-circle btn-sm btn-primary"
+                          disabled={isUploading}
+                        >
+                          <FaCamera />
+                        </button>
+                        <input
+                          type="file"
+                          ref={fileInputRef}
+                          onChange={handleImageChange}
+                          accept="image/*"
+                          className="hidden"
+                        />
+                      </div>
+                      {selectedImage && (
+                        <span className="text-sm text-gray-500">
+                          New image selected
+                        </span>
+                      )}
+                      {isUploading && (
+                        <span className="text-sm text-gray-500">
+                          Uploading...
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Form Fields */}
+                    <div className="flex-1 space-y-4">
+                      <div className="form-control flex items-center gap-2">
+                        <label className="label">
+                          <span className="label-text">Full Name:</span>
+                        </label>
+                        <input
+                          type="text"
+                          {...register("displayName", {
+                            required: "Name is required",
+                            minLength: {
+                              value: 3,
+                              message: "Name must be at least 3 characters",
+                            },
+                          })}
+                          className={`input input-bordered ${
+                            errors.displayName ? "input-error" : ""
+                          }`}
+                        />
+                        {errors.displayName && (
+                          <span className="text-xs text-error">
+                            {errors.displayName.message}
+                          </span>
+                        )}
+                      </div>
+
+                      <div className="form-control flex items-center gap-2">
+                        <label className="label">
+                          <span className="label-text">Email:</span>
+                        </label>
+                        <input
+                          type="email"
+                          {...register("email")}
+                          className="input input-bordered"
+                          disabled
+                        />
+                      </div>
+
+                      <div className="pt-4">
+                        <button
+                          type="submit"
+                          className="btn btn-primary text-white"
+                          disabled={isSubmitting || isUploading}
+                        >
+                          {isUploading
+                            ? "Uploading..."
+                            : isSubmitting
+                            ? "Saving..."
+                            : "Save Changes"}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </motion.form>
+              ) : (
+                <div className="flex flex-col md:flex-row gap-8">
+                  {/* Profile Info */}
+                  <div className="flex flex-col items-center">
+                    <div className="avatar mb-4">
+                      <div className="w-32 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                        <img src={user?.photoURL} alt="Profile" />
+                      </div>
+                    </div>
+                    <h2 className="text-xl font-bold">{user?.displayName}</h2>
+                    {user.email === "alamin@gmail.com" ? (
+                      ""
+                    ) : (
+                      <p className="text-gray-500">
+                        User science
+                        {new Date(
+                          user?.metadata?.creationTime
+                        ).toLocaleDateString("en-US", {
+                          year: "numeric",
+                          month: "long",
+                          day: "numeric",
+                        })}
+                      </p>
+                    )}
+                  </div>
+
+                  {/* Details */}
+                  <div className="flex-1 space-y-4">
+                    <div className="flex items-center gap-4">
+                      <FaEnvelope className="text-gray-400 text-xl" />
+                      <div>
+                        <p className="text-sm text-gray-500">Email</p>
+                        <p className="font-medium">{user?.email}</p>
+                      </div>
+                    </div>
+
+                    <div>
+                      {user.email === "alamin@gmail.com" ? (
+                        <p className="font-bold flex items-center gap-4">
+                          <FaUser></FaUser> Admin
+                        </p>
+                      ) : (
+                        <div className="flex items-center gap-4">
+                          <FaCalendarAlt className="text-gray-400 text-xl" />
+                          <div>
+                            <p className="text-sm text-gray-500">User Since</p>
+                            <p className="font-medium">
+                              {new Date(
+                                user?.metadata?.creationTime
+                              ).toLocaleDateString("en-US", {
+                                year: "numeric",
+                                month: "long",
+                                day: "numeric",
+                              })}
+                            </p>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="divider"></div>
+
+                    {/* Actions */}
+                    <div className="flex flex-wrap gap-4 pt-4">
+                      <Link to="/dashboard/add-food">
+                        <button className="btn btn-secondary text-white hidden md:flex">
+                          <FaPlus className="mr-2" />
+                          Add Food
+                        </button>
+                      </Link>
+                      <button
+                        onClick={handleLogout}
+                        className="btn btn-error w-full md:w-fit"
+                      >
+                        <FaSignOutAlt className="mr-2" />
+                        Logout
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </motion.div>
   );
 };
 

@@ -69,14 +69,6 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "/user-profile",
-        element: (
-          <PrivateRoutes>
-            <Profile></Profile>
-          </PrivateRoutes>
-        ),
-      },
-      {
         path: "/login",
         Component: Login,
       },
@@ -84,42 +76,49 @@ export const router = createBrowserRouter([
         path: "/register",
         Component: Register,
       },
-      
     ],
     errorElement: <ErrorPage></ErrorPage>,
   },
   {
-        path: "/dashboard",
+    path: "/dashboard",
+    element: (
+      <PrivateRoutes>
+        <Dashboard></Dashboard>
+      </PrivateRoutes>
+    ),
+    children: [
+      {
+        index: true,
         element: (
           <PrivateRoutes>
-            <Dashboard></Dashboard>
+            <DashboardHome></DashboardHome>
           </PrivateRoutes>
         ),
-        children: [
-          {
-            index: true,
-            element: (
-              <PrivateRoutes>
-                <DashboardHome></DashboardHome>
-              </PrivateRoutes>
-            ),
-          },
-          {
-            path: "/dashboard/add-food",
-            element: (
-              <PrivateRoutes>
-                <AddFood></AddFood>
-              </PrivateRoutes>
-            ),
-          },
-          {
-            path: "/dashboard/my-items",
-            element: (
-              <PrivateRoutes>
-                <MyItems></MyItems>
-              </PrivateRoutes>
-            )
-          },
-        ],
       },
+      {
+        path: "/dashboard/my-profile",
+        element: (
+          <PrivateRoutes>
+            <Profile></Profile>
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "/dashboard/add-food",
+        element: (
+          <PrivateRoutes>
+            <AddFood></AddFood>
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "/dashboard/my-items",
+        element: (
+          <PrivateRoutes>
+            <MyItems></MyItems>
+          </PrivateRoutes>
+        ),
+      },
+    ],
+  },
 ]);

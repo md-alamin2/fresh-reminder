@@ -203,7 +203,7 @@ const Navbar = () => {
             <div className="dropdown dropdown-hover dropdown-end lg:dropdown-start">
               <img
                 tabIndex={0}
-                className="w-14 bg-[#64b843] p-1 rounded-full cursor-pointer"
+                className="w-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2"
                 src={user.photoURL? user.photoURL : userImg}
                 alt="user"
               />
@@ -215,17 +215,6 @@ const Navbar = () => {
                   <p>{user.displayName}</p>
                 </li>
                 <li>
-                  <Link to="/user-profile">Profile</Link>
-                </li>
-                <li className="md:hidden">
-                  <button
-                    className="text-red-500 flex items-center"
-                    onClick={handleLogout}
-                  >
-                    Logout <MdOutlineLogout size={20} />
-                  </button>
-                </li>
-                <li>
                   <NavLink
                     to="/dashboard"
                     className={({ isActive }) =>
@@ -235,16 +224,16 @@ const Navbar = () => {
                     Dashboard
                   </NavLink>
                 </li>
+                <li>
+                  <button
+                    className="text-red-500 flex items-center"
+                    onClick={handleLogout}
+                  >
+                    Logout <MdOutlineLogout size={20} />
+                  </button>
+                </li>
               </ul>
             </div>
-            <button
-              className="btn btn-error btn-outline md:flex items-center gap-1 hidden"
-              onClick={handleLogout}
-            >
-              {" "}
-              Logout
-              <MdOutlineLogout size={20} />
-            </button>
           </div>
         ) : (
           <div className="flex gap-2">

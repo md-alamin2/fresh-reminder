@@ -2,16 +2,18 @@ import React, { useEffect, useState } from "react";
 import { NavLink, Outlet, useNavigation } from "react-router";
 import Logo from "../Components/Logo/Logo";
 import Loader from "../Components/Laoder/Loader";
+import useAuth from "../Hooks/useAuth";
 
 const Dashboard = () => {
   const navigation = useNavigation();
+  const { user } = useAuth();
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
   // Load theme from localStorage on component mount
-    useEffect(() => {
-      const savedTheme = localStorage.getItem("theme");
-      setTheme(savedTheme);
-      document.querySelector("html").setAttribute("data-theme", savedTheme);
-    }, [theme]);
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme");
+    setTheme(savedTheme);
+    document.querySelector("html").setAttribute("data-theme", savedTheme);
+  }, [theme]);
   return (
     <div>
       <div className="drawer lg:drawer-open">
@@ -61,26 +63,22 @@ const Dashboard = () => {
             {/* Sidebar content here */}
             <Logo></Logo>
             <li className="mt-5">
-              <NavLink
-                to="/dashboard"
-                className="font-semibold"
-              >
+              <NavLink to="/dashboard" className="font-semibold">
                 Dashboard
               </NavLink>
             </li>
+            <li className="">
+              <NavLink to="/dashboard/my-profile" className="font-semibold">
+                My Profile
+              </NavLink>
+            </li>
             <li>
-              <NavLink
-                to="/dashboard/add-food"
-                className="font-semibold"
-              >
+              <NavLink to="/dashboard/add-food" className="font-semibold">
                 Add Food
               </NavLink>
             </li>
             <li>
-              <NavLink
-                to="/dashboard/my-items"
-                className="font-semibold"
-              >
+              <NavLink to="/dashboard/my-items" className="font-semibold">
                 My Items
               </NavLink>
             </li>
