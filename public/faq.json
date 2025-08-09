@@ -1,22 +1,47 @@
 [
   {
-    "question": "What is the Fresh Reminder?",
-    "answer": "The Fresh Reminder is a web app that helps you monitor food items and get alerts before they expire to reduce waste and save money."
+    "question": "What is the purpose of the Fresh Reminder web app?",
+    "answer": "Fresh Reminder helps you track your food items, monitor their expiry dates, and reduce waste by alerting you about nearly expired or expired foods."
+  },
+  {
+    "question": "What can I see on the Home Page?",
+    "answer": "The Home Page includes a banner carousel, a Nearly Expiry Items section showing foods expiring within 5 days, an Expired Food section, and extra tips for managing your food storage."
   },
   {
     "question": "How do I add a new food item?",
-    "answer": "You can add a new item by clicking the 'Add Food' button and filling out details like name, category, quantity, expiry date, and notes."
+    "answer": "After logging in, go to the 'Dashboard' then go to 'Add Food' page, fill in details like food title, image, category, quantity, and expiry date, then click 'Add Food'. The item will be saved in your account."
   },
   {
-    "question": "Can I edit or delete food entries?",
-    "answer": "Yes, each item has options to edit its details or delete it completely from your list whenever needed."
+    "question": "What is the Fridge page used for?",
+    "answer": "The Fridge page displays all your stored food items in card format, making it easy to view expiry statuses, categories, and other details."
+  },
+  {
+    "question": "How does the Nearly Expiry section work?",
+    "answer": "This section automatically lists the 8 food items in the database that will expire within the next 5 days, helping you prioritize their use."
+  },
+  {
+    "question": "Can I edit or delete my food entries?",
+    "answer": "Yes, on the My Items page you can update or delete your food entries using the provided action buttons."
   },
   {
     "question": "How does the system notify me before expiry?",
     "answer": "The app highlights items that are expiring soon or already expired so you can take timely action. Future versions may include notification alerts."
   },
   {
-    "question": "Is my food data saved securely?",
-    "answer": "Yes, your food data is stored securely and only accessible to you. We prioritize user privacy and data safety."
+    "question": "What is the Food Details page for?",
+    "answer": "The Food Details page shows complete information about a food item, including a countdown to its expiry and the option to add notes if you are the owner."
+  },
+  {
+    "question": "Can I add notes to any food item?",
+    "answer": "No, only the user who added the food item can add notes. If you are not the owner, the note feature will be disabled."
+  },
+  {
+    "question": "How do I search or filter my food items?",
+    "answer": "On the Fridge page, you can search for food by keyword or filter by category, making it easier to find specific items."
+  },
+  {
+    "question": "Is my data secure?",
+    "answer": "Yes, all sensitive routes require JWT authentication, and your data is stored securely in the database."
   }
 ]
+

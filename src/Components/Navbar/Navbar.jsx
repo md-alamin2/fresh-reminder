@@ -38,18 +38,15 @@ const Navbar = () => {
           About
         </NavLink>
       </li>
-      {user && (
-        <>
-          <li>
-            <NavLink
-              to="/dashboard"
-              className={({ isActive }) => (isActive ? active : "font-medium")}
-            >
-              Dashboard
-            </NavLink>
-          </li>
-        </>
-      )}
+      <li>
+        <NavLink
+          to="/faq"
+          className={({ isActive }) => (isActive ? active : "font-medium")}
+        >
+          FAQ
+        </NavLink>
+      </li>
+      
     </>
   );
 
