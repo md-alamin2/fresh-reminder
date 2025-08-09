@@ -49,7 +49,7 @@ const Slider = () => {
                   </p>
                   <p className="text-sm md:text-xl mt-4">{slide.description}</p>
                   <Link
-                    to="/add-food"
+                    to="/fridge"
                     className="btn bg-[#64b843] border-none mt-5"
                   >
                     Get Started

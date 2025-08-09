@@ -1,10 +1,8 @@
 import { FaFacebook, FaTwitter, FaInstagram, FaLink, FaLinkedin } from "react-icons/fa";
 import logo from "../../assets/imgs/as-11-logo.png";
-import useAuth from "../../Hooks/useAuth";
 import { Link, NavLink } from "react-router";
 
 export default function Footer() {
-  const { user } = useAuth();
 
   const links = (
     <>
@@ -18,32 +16,30 @@ export default function Footer() {
       </li>
       <li>
         <NavLink
-          to="/"
+          to="/fridge"
           className= "font-semibold"
         >
           Fridge
         </NavLink>
       </li>
-      {user && (
-        <>
-          <li>
-            <NavLink
-              to="/"
-              className= "font-semibold"
-            >
-              Add Food
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/"
-              className= "font-semibold"
-            >
-              My Items
-            </NavLink>
-          </li>
-        </>
-      )}
+      <li>
+        <NavLink
+          to="/about"
+          className= "font-semibold"
+        >
+          About
+        </NavLink>
+      </li>
+      
+      <li>
+        <NavLink
+          to="/faq"
+          className= "font-semibold"
+        >
+          FAQ
+        </NavLink>
+      </li>
+      
     </>
   );
 
