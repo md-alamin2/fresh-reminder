@@ -17,6 +17,8 @@ import Dashboard from "../Layout/Dashboard";
 import AllFoods from "../Pages/AllFoods/AllFoods";
 import FAQ from "../Pages/FAQ/FAQ";
 import TermsPrivacy from "../Pages/TermsPrivacy/TermsPrivacy";
+import AdminRoute from "./AdminRoute";
+import ForbiddenPage from "../Components/Forbidden/Forbidden";
 
 export const router = createBrowserRouter([
   {
@@ -113,11 +115,16 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/all-foods",
         element: (
-          <PrivateRoutes>
+          <AdminRoute>
             <AllFoods></AllFoods>
-          </PrivateRoutes>
+          </AdminRoute>
         ),
       },
     ],
+    errorElement: <ErrorPage></ErrorPage>,
+  },
+  {
+    path: "/forbidden",
+    Component: ForbiddenPage,
   },
 ]);
