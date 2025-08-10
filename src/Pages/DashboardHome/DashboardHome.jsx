@@ -147,6 +147,7 @@ const DashboardStats = () => {
 
   return (
     <div className="w-11/12 lg:container mx-auto mb-10">
+      <title>FreshReminder-Dashboard</title>
       <AnimatePresence>
         <motion.div
           initial={{ opacity: 0 }}

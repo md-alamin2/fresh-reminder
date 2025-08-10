@@ -48,6 +48,7 @@ const FAQ = () => {
       animate="visible"
       className="w-11/12 lg:container mx-auto mt-20 md:px-10 lg:px-40"
     >
+      <title>FreshReminder-FAQ</title>
       <div>
         <div className="ml-4 md:ml-0">
           <h2 className="w-full text-center">
