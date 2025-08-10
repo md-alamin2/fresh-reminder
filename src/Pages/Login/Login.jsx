@@ -7,10 +7,10 @@ import "aos/dist/aos.css";
 import useAuth from "../../Hooks/useAuth";
 import loginImg from "../../assets/Lottis/as-11-login.json";
 import Lottie from "lottie-react";
-import person from "../../assets/Lottis/as-11-person.json"
+import person from "../../assets/Lottis/as-11-person.json";
 
 const Login = () => {
-  const { loginUser, loginWithGoogle, setUser } = useAuth();
+  const { loginUser, loginWithGoogle, setUser, loading } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -85,12 +85,23 @@ const Login = () => {
     <div>
       <title>FreshReminder-login</title>
       <div className="w-11/12 lg:container mx-auto flex flex-col md:flex-row md:items-center bg-base-100  mt-5 md:mt-10 md:px-40">
-        <div data-aos="fade-right" className="hidden md:w-[50%] lg:flex justify-center">
-          <Lottie animationData={loginImg} style={{width:500}}></Lottie>
+        <div
+          data-aos="fade-right"
+          className="hidden md:w-[50%] lg:flex justify-center"
+        >
+          <Lottie animationData={loginImg} style={{ width: 500 }}></Lottie>
         </div>
-        <form data-aos="fade-left" onSubmit={handleLogin} className="card-body md:w-[50%]">
+        <form
+          data-aos="fade-left"
+          onSubmit={handleLogin}
+          className="card-body md:w-[50%]"
+        >
           <div className="flex justify-center">
-            <Lottie animationData={person} style={{width:100}} className="bg-[#64b843] rounded-full p-1"></Lottie>
+            <Lottie
+              animationData={person}
+              style={{ width: 100 }}
+              className="bg-[#64b843] rounded-full p-1"
+            ></Lottie>
           </div>
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
             Login Your Account
@@ -114,7 +125,13 @@ const Login = () => {
               <a className="link link-hover">Forgot password?</a>
             </div>
           </fieldset>
-          <button className="btn bg-[#64b843]">Login</button>
+          <button className="btn bg-[#64b843]">
+            {loading ? (
+              <span className="loading loading-spinner loading-md"></span>
+            ) : (
+              "Login"
+            )}
+          </button>
           <div className="divider">OR</div>
           {/* Google */}
           <button
@@ -148,7 +165,11 @@ const Login = () => {
                 ></path>
               </g>
             </svg>
-            Login with Google
+            {loading ? (
+              <span className="loading loading-spinner loading-md"></span>
+            ) : (
+              "Login With Google"
+            )}
           </button>
           <p className="text-center mt-3">
             Don't have an account?{" "}

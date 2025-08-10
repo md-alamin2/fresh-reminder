@@ -130,7 +130,7 @@ const FoodDetails = () => {
               {/* You can open the modal using document.getElementById('ID').showModal() method */}
               <div className="flex justify-end">
                 <button
-                  disabled={user.email === userEmail ? false : true}
+                  disabled={user?.email === userEmail ? false : true}
                   className="btn bg-[#64b843]"
                   onClick={() =>
                     document.getElementById("my_modal_3").showModal()

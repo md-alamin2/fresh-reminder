@@ -76,8 +76,8 @@ export default function Footer() {
         {/* Terms */}
         <div>
           <h3 className="footer-title">Legal</h3>
-          <a className="link link-hover">Terms & Conditions</a>
-          <a className="link link-hover">Privacy Policy</a>
+          <a href="/terms-privacy" className="link link-hover">Terms & Conditions</a>
+          <a href="/terms-privacy" className="link link-hover">Privacy Policy</a>
         </div>
 
         {/* Social Links */}

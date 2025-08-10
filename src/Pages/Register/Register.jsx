@@ -10,7 +10,8 @@ import Lottie from "lottie-react";
 import person from "../../assets/Lottis/as-11-person.json";
 
 const Register = () => {
-  const { createUser, loginWithGoogle, updateUser, setUser } = useAuth();
+  const { createUser, loginWithGoogle, updateUser, setUser, loading } =
+    useAuth();
   const [passwordError, setPasswordError] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
@@ -125,7 +126,10 @@ const Register = () => {
     <div>
       <title>FreshReminder-register</title>
       <div className="w-11/12 lg:container mx-auto flex flex-col md:flex-row md:items-center bg-base-100 mt-2 md:mt-10 md:px-40">
-        <div data-aos="fade-right" className="hidden w-[50%] lg:flex justify-center">
+        <div
+          data-aos="fade-right"
+          className="hidden w-[50%] lg:flex justify-center"
+        >
           <Lottie animationData={regImg} style={{ width: 500 }}></Lottie>
         </div>
         <form
@@ -187,7 +191,13 @@ const Register = () => {
             )}
           </fieldset>
           {/* btn */}
-          <button className="btn bg-[#64b843] mt-4">Register</button>
+          <button className="btn bg-[#64b843] mt-4">
+            {loading ? (
+              <span className="loading loading-spinner loading-md"></span>
+            ) : (
+              "Register"
+            )}
+          </button>
           <div className="divider">OR</div>
           {/* Google */}
           <button
@@ -226,7 +236,11 @@ const Register = () => {
           <p className="text-center mt-3">
             Already have an account?{" "}
             <Link to="/login" className="text-[#64b843] font-bold">
-              Login
+              {loading ? (
+                <span className="loading loading-spinner loading-md"></span>
+              ) : (
+                "Login With Google"
+              )}
             </Link>
           </p>
         </form>

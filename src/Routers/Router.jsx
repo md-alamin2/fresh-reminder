@@ -16,6 +16,7 @@ import DashboardHome from "../Pages/DashboardHome/DashboardHome";
 import Dashboard from "../Layout/Dashboard";
 import AllFoods from "../Pages/AllFoods/AllFoods";
 import FAQ from "../Pages/FAQ/FAQ";
+import TermsPrivacy from "../Pages/TermsPrivacy/TermsPrivacy";
 
 export const router = createBrowserRouter([
   {
@@ -46,12 +47,12 @@ export const router = createBrowserRouter([
         Component: FAQ,
       },
       {
+        path: "/terms-privacy",
+        Component: TermsPrivacy,
+      },
+      {
         path: "/food-details/:id",
-        element: (
-          <PrivateRoutes>
-            <FoodDetails></FoodDetails>
-          </PrivateRoutes>
-        ),
+        element: <FoodDetails></FoodDetails>,
         loader: ({ params }) =>
           fetch(
             `https://ph-assignment-11-server-omega.vercel.app/foods/${params.id}`
